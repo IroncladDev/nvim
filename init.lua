@@ -17,6 +17,7 @@ if not vim.loop.fs_stat(lazypath) then
 end
 
 vim.g.copilot_assume_mapped = true
+vim.g.copilot_filetypes = { markdown = true }
 vim.wo.relativenumber = true
 
 dofile(vim.g.base46_cache .. "defaults")
