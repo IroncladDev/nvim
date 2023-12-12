@@ -345,16 +345,30 @@ M.nvterm = {
     -- new
     ["<leader>h"] = {
       function()
-        require("nvterm.terminal").new "horizontal"
+        vim.cmd("split | enew")
       end,
-      "New horizontal term",
+      "New horizontal split",
     },
 
     ["<leader>v"] = {
       function()
-        require("nvterm.terminal").new "vertical"
+        vim.cmd("vsplit | enew")
       end,
-      "New vertical term",
+      "New vertical split",
+    },
+
+    ["<leader>H"] = {
+      function()
+        vim.cmd("split | terminal")
+      end,
+      "Horizontal split with terminal",
+    },
+    
+    ["<leader>V"] = {
+      function()
+        vim.cmd("vsplit | terminal")
+      end,
+      "Vertical split with terminal",
     },
   },
 }
