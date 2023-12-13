@@ -192,6 +192,7 @@ local default_plugins = {
     config = function(_, opts)
       require("cmp").setup(opts)
     end,
+    lazy = false
   },
 
   {

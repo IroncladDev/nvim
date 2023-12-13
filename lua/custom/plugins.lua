@@ -91,6 +91,15 @@ local plugins = {
     end,
     lazy = false
   },
+  {
+    "andweeb/presence.nvim",
+    config = function() 
+      require("presence").setup({
+        auto_update = true,
+      })
+    end,
+    lazy = false
+  }
 }
 return plugins
 
