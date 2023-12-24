@@ -13,7 +13,9 @@ local plugins = {
         "eslint-lsp",
         "prettier",
         "typescript-language-server",
-        "lua-language-server"
+        "lua-language-server",
+        "prisma-language-server",
+        "tailwindcss-language-server"
       }
     }
   },
@@ -93,13 +95,49 @@ local plugins = {
   },
   {
     "andweeb/presence.nvim",
-    config = function() 
+    config = function()
       require("presence").setup({
         auto_update = true,
       })
     end,
     lazy = false
+  },
+  {
+    "AckslD/nvim-neoclip.lua",
+    config = function()
+      require('neoclip').setup()
+    end,
+    lazy = false
+  },
+  {
+    "windwp/nvim-ts-autotag",
+    ft = {
+      "javascript",
+      "javascriptreact",
+      "typescript",
+      "typescriptreact",
+      "html",
+    },
+    config = function()
+      require('nvim-ts-autotag').setup()
+    end,
+  },
+  {
+    "nvim-treesitter/nvim-treesitter",
+    opts = function()
+      opts = require "plugins.configs.treesitter"
+      opts.ensure_installed = {
+        "lua",
+        "javascript",
+        "typescript",
+        "tsx",
+        "html",
+        "css"
+      }
+      return opts
+    end,
   }
 }
+
 return plugins
 

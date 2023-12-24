@@ -370,6 +370,13 @@ M.nvterm = {
       end,
       "Vertical split with terminal",
     },
+
+    ["<leader>pp"] = {
+      function()
+        vim.cmd("Telescope neoclip")
+      end,
+      "Pick from clipboard",
+    }
   },
 }
 
