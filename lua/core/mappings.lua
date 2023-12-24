@@ -55,7 +55,7 @@ M.general = {
   },
 
   t = {
-    ["<C-x>"] = { vim.api.nvim_replace_termcodes("<C-\\><C-N>", true, true, true), "Escape terminal mode" },
+    ["<Esc>"] = { vim.api.nvim_replace_termcodes("<C-\\><C-N>", true, true, true), "Escape terminal mode" },
   },
 
   v = {
@@ -345,17 +345,38 @@ M.nvterm = {
     -- new
     ["<leader>h"] = {
       function()
-        require("nvterm.terminal").new "horizontal"
+        vim.cmd("split | enew")
       end,
-      "New horizontal term",
+      "New horizontal split",
     },
 
     ["<leader>v"] = {
       function()
-        require("nvterm.terminal").new "vertical"
+        vim.cmd("vsplit | enew")
       end,
-      "New vertical term",
+      "New vertical split",
     },
+
+    ["<leader>H"] = {
+      function()
+        vim.cmd("split | terminal")
+      end,
+      "Horizontal split with terminal",
+    },
+    
+    ["<leader>V"] = {
+      function()
+        vim.cmd("vsplit | terminal")
+      end,
+      "Vertical split with terminal",
+    },
+
+    ["<leader>pp"] = {
+      function()
+        vim.cmd("Telescope neoclip")
+      end,
+      "Pick from clipboard",
+    }
   },
 }
 
