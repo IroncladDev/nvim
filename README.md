@@ -17,6 +17,7 @@ My custom config, which I've tuned for personal use.
 - [nvim-neoclip](https://github.com/AckslD/nvim-neoclip.lua) - Clipboard manager
   - Can be opened with `<leader>pp`. CTRL+P to paste.
 - [nvim-ts-autotag](https://github.com/windwp/nvim-ts-autotag) - Auto close HTML/JSX tags and handle renames.
+- [better-comments](https://github.com/Djancyp/better-comments.nvim) - Highlight TODOs and others
 
 ## Custom Keybindings
 
