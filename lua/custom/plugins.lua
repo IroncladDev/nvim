@@ -41,21 +41,6 @@ local plugins = {
     end,
   },
   {
-    "jackMort/ChatGPT.nvim",
-    event = "VeryLazy",
-    dependencies = {
-      "MunifTanjim/nui.nvim",
-      "nvim-lua/plenary.nvim", "nvim-telescope/telescope.nvim" },
-    config = function()
-      require("chatgpt").setup({
-        api_key_cmd = "security find-generic-password -wa openai -s openai",
-        openai_params = {
-          model = "gpt-3.5-turbo-1106"
-        }
-      })
-    end
-  },
-  {
     "samodostal/image.nvim",
     config = function()
       require("image").setup({
@@ -104,13 +89,6 @@ local plugins = {
     lazy = false
   },
   {
-    "AckslD/nvim-neoclip.lua",
-    config = function()
-      require('neoclip').setup()
-    end,
-    lazy = false
-  },
-  {
     "windwp/nvim-ts-autotag",
     ft = {
       "javascript",
@@ -126,7 +104,7 @@ local plugins = {
   {
     "nvim-treesitter/nvim-treesitter",
     opts = function()
-      opts = require "plugins.configs.treesitter"
+      local opts = require "plugins.configs.treesitter"
       opts.ensure_installed = {
         "lua",
         "javascript",
@@ -142,7 +120,7 @@ local plugins = {
     "Djancyp/better-comments.nvim",
     config = function()
       require("better-comment").Setup({
-        tags =  {
+        tags = {
           {
             name = "TODO",
             fg = "#348ceb",
@@ -214,4 +192,3 @@ local plugins = {
 }
 
 return plugins
-
