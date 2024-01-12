@@ -53,6 +53,15 @@ local plugins = {
     lazy = false
   },
   {
+    "andweeb/presence.nvim",
+    config = function()
+      require("presence").setup({
+        auto_update = true,
+      })
+    end,
+    lazy = false
+  },
+  {
     "rust-lang/rust.vim",
     ft = "rust",
     init = function()
