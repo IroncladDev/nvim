@@ -35,7 +35,7 @@ local plugins = {
   },
   {
     "Pocco81/auto-save.nvim",
-    event = { "InsertEnter", "TextChanged" },
+    event = { "TextChanged" },
     config = function()
       require("auto-save").setup({})
     end,
