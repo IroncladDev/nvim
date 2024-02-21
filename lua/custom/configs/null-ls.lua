@@ -10,7 +10,7 @@ end
 local sources = {
   null_ls.builtins.formatting.prettier.with({
     filetypes = {
-      "javascript", "typescript", "css", "html", "json", "markdown", "md", "tsx", "jsx",
+      "javascript", "typescript", "css", "html", "json", "markdown", "md", "tsx", "jsx", "svg",
       "javascriptreact", "typescriptreact"
     },
   }),
@@ -29,11 +29,11 @@ local opts = {
         group = augroup,
         buffer = bufnr
       })
-      vim.api.nvim_create_autocmd("BufWritePre", {
+      vim.api.nvim_create_autocmd("InsertLeave", {
         group = augroup,
         buffer = bufnr,
         callback = function()
-          vim.lsp.buf.format({ async = false })
+          vim.lsp.buf.format({ async = true })
         end,
       })
     end

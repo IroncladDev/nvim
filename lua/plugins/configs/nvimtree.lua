@@ -1,4 +1,4 @@
-local WIDTH_RATIO = 0.5  -- You can change this too
+local WIDTH_RATIO = 0.5 -- You can change this too
 
 local options = {
   filters = {
@@ -15,32 +15,30 @@ local options = {
     update_root = false,
   },
   view = {
-    relativenumber = true,
     float = {
       enable = true,
       open_win_config = function()
         local screen_w = vim.opt.columns:get()
-        local window_w = screen_w * WIDTH_RATIO
-        local window_w_int = math.floor(window_w)
-        local center_x = (screen_w - window_w) / 2
+        local screen_h = vim.opt.lines:get()
+        local center_x = math.floor(screen_w / 2) - 20
 
         return {
           border = "rounded",
           relative = "editor",
-          row = 5,
+          row = 2,
           col = center_x,
-          width = window_w_int,
-          height = 20,
+          width = 40,
+          height = screen_h - 4,
         }
-        end,
+      end,
     },
     width = function()
       return math.floor(vim.opt.columns:get() * WIDTH_RATIO)
     end,
   },
   git = {
-    enable = false,
-    ignore = true,
+    enable = true,
+    ignore = false,
   },
   filesystem_watchers = {
     enable = true,
@@ -52,7 +50,7 @@ local options = {
   },
   renderer = {
     root_folder_label = false,
-    highlight_git = false,
+    highlight_git = "name",
     highlight_opened_files = "none",
 
     indent_markers = {
@@ -64,7 +62,7 @@ local options = {
         file = true,
         folder = true,
         folder_arrow = true,
-        git = false,
+        git = true,
       },
 
       glyphs = {
@@ -81,12 +79,12 @@ local options = {
           arrow_closed = "",
         },
         git = {
-          unstaged = "✗",
+          unstaged = "*",
           staged = "✓",
           unmerged = "",
-          renamed = "➜",
-          untracked = "★",
-          deleted = "",
+          renamed = "~",
+          untracked = "?",
+          deleted = "-",
           ignored = "◌",
         },
       },

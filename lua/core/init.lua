@@ -42,6 +42,14 @@ opt.termguicolors = true
 opt.timeoutlen = 400
 opt.undofile = true
 
+-- add hypens to words
+opt.iskeyword:append "-"
+
+-- ripgrep
+vim.o.grepprg = "rg --vimgrep --smart-case --follow --glob '!.*/' --glob '!node_modules/*'"
+vim.o.grepformat = "%f:%l:%c:%m"
+
+
 -- interval for writing swap file to disk, also used by gitsigns
 opt.updatetime = 250
 

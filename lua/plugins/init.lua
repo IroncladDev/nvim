@@ -145,21 +145,11 @@ local default_plugins = {
     end,
   },
 
-  -- load luasnips + cmp related in insert mode only
+  -- load cmp related in insert mode only
   {
     "hrsh7th/nvim-cmp",
     event = "InsertEnter",
     dependencies = {
-      {
-        -- snippet plugin
-        "L3MON4D3/LuaSnip",
-        dependencies = "rafamadriz/friendly-snippets",
-        opts = { history = true, updateevents = "TextChanged,TextChangedI" },
-        config = function(_, opts)
-          require("plugins.configs.others").luasnip(opts)
-        end,
-      },
-
       -- autopairing of (){}[] etc
       {
         "windwp/nvim-autopairs",
@@ -178,7 +168,6 @@ local default_plugins = {
 
       -- cmp sources plugins
       {
-        "saadparwaiz1/cmp_luasnip",
         "hrsh7th/cmp-nvim-lua",
         "hrsh7th/cmp-nvim-lsp",
         "hrsh7th/cmp-buffer",

@@ -64,3 +64,4 @@ Read more on switching neovim configurations [here](https://michaeluloth.com/neo
 ## Misc
 
 - Floating neovim filetree for convenience
+- Filetree can be toggled with `<leader>b`

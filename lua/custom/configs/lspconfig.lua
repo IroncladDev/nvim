@@ -9,7 +9,15 @@ lspconfig.tsserver.setup {
   capabilities = capabilities,
 }
 
-lspconfig.lua_ls.setup {}
+lspconfig.lua_ls.setup {
+  settings = {
+    Lua = {
+      diagnostics = {
+        globals = { "vim" },
+      },
+    }
+  }
+}
 
 lspconfig.prismals.setup {}
 

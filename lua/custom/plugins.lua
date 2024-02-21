@@ -30,7 +30,7 @@ local plugins = {
   {
     "github/copilot.vim",
     cmd = "Copilot",
-    event = "InsertEnter",
+    event = "BufEnter",
     ft = "markdown"
   },
   {
@@ -96,10 +96,12 @@ local plugins = {
       "typescript",
       "typescriptreact",
       "html",
+      "svg"
     },
     config = function()
       require('nvim-ts-autotag').setup()
     end,
+    event = "VeryLazy"
   },
   {
     "nvim-treesitter/nvim-treesitter",
@@ -129,13 +131,6 @@ local plugins = {
             virtual_text = ""
           },
           {
-            name = "FIX",
-            fg = "#6cf5a3",
-            bg = "",
-            bold = true,
-            virtual_text = ""
-          },
-          {
             name = "?",
             fg = "#905fd4",
             bg = "",
@@ -152,7 +147,7 @@ local plugins = {
         }
       })
     end,
-    lazy = false
+    event = "VeryLazy"
   },
   {
     "rust-lang/rust.vim",
