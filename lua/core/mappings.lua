@@ -47,10 +47,17 @@ M.general = {
 
     ["<leader>fm"] = {
       function()
-        vim.lsp.buf.format { async = true }
+        vim.lsp.buf.format { async = false }
       end,
       "LSP formatting",
     },
+
+    ["<leader>q"] = {
+      function()
+        vim.cmd "q"
+      end,
+      "Close split"
+    }
   },
 
   t = {
@@ -360,20 +367,13 @@ M.nvterm = {
       end,
       "Horizontal split with terminal",
     },
-    
+
     ["<leader>V"] = {
       function()
         vim.cmd("vsplit | terminal")
       end,
       "Vertical split with terminal",
     },
-
-    ["<leader>pp"] = {
-      function()
-        vim.cmd("Telescope neoclip")
-      end,
-      "Pick from clipboard",
-    }
   },
 }
 

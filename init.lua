@@ -18,6 +18,7 @@ end
 
 vim.g.copilot_assume_mapped = true
 vim.g.copilot_filetypes = { markdown = true, mdx = true }
+vim.o.termguicolors = true
 
 dofile(vim.g.base46_cache .. "defaults")
 vim.opt.rtp:prepend(lazypath)

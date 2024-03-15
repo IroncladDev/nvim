@@ -29,11 +29,27 @@ local opts = {
         group = augroup,
         buffer = bufnr
       })
+      vim.api.nvim_create_autocmd("InsertEnter", {
+        group = augroup,
+        buffer = bufnr,
+        callback = function()
+          vim.b.text_changed = false
+        end,
+      })
+      vim.api.nvim_create_autocmd("TextChangedI", {
+        group = augroup,
+        buffer = bufnr,
+        callback = function()
+          vim.b.text_changed = true
+        end,
+      })
       vim.api.nvim_create_autocmd("InsertLeave", {
         group = augroup,
         buffer = bufnr,
         callback = function()
-          vim.lsp.buf.format({ async = true })
+          if vim.b.text_changed then
+            vim.lsp.buf.format({ async = false })
+          end
         end,
       })
     end
