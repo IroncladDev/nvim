@@ -1,6 +1,6 @@
 local plugins = {
   {
-    "jose-elias-alvarez/null-ls.nvim",
+    "nvimtools/none-ls.nvim",
     event = "VeryLazy",
     opts = function()
       return require "custom.configs.null-ls"
@@ -11,7 +11,7 @@ local plugins = {
     opts = {
       ensure_installed = {
         "eslint-lsp",
-        "prettier",
+        "prettierd",
         "typescript-language-server",
         "lua-language-server",
         "prisma-language-server",
@@ -28,40 +28,26 @@ local plugins = {
     end,
   },
   {
-    "github/copilot.vim",
-    cmd = "Copilot",
-    event = "BufEnter",
-    ft = "markdown"
+    "nvim-treesitter/nvim-treesitter",
+    opts = function()
+      opts = require "plugins.configs.treesitter"
+      opts.ensure_installed = {
+        "lua",
+        "javascript",
+        "typescript",
+        "tsx",
+        "html",
+        "css"
+      }
+      return opts
+    end
   },
   {
     "Pocco81/auto-save.nvim",
-    event = { "TextChanged" },
+    event = { "InsertLeave", "TextChanged" },
     config = function()
       require("auto-save").setup({})
     end,
-  },
-  {
-    "samodostal/image.nvim",
-    config = function()
-      require("image").setup({
-        render = {
-          min_padding = 5,
-          show_label = true,
-          show_image_dimensions = true,
-          use_dither = true,
-          foreground_color = true,
-          background_color = true
-        },
-        events = {
-          update_on_nvim_resize = true,
-        },
-      })
-    end,
-    dependencies = {
-      "nvim-lua/plenary.nvim",
-      "m00qek/baleia.nvim",
-    },
-    event = "VeryLazy",
   },
   {
     "rmagatti/auto-session",
@@ -80,15 +66,6 @@ local plugins = {
     lazy = false
   },
   {
-    "andweeb/presence.nvim",
-    config = function()
-      require("presence").setup({
-        auto_update = true,
-      })
-    end,
-    lazy = false
-  },
-  {
     "windwp/nvim-ts-autotag",
     ft = {
       "javascript",
@@ -96,31 +73,12 @@ local plugins = {
       "typescript",
       "typescriptreact",
       "html",
-      "svg"
+      "xml"
     },
     config = function()
       require('nvim-ts-autotag').setup()
     end,
     event = "VeryLazy"
-  },
-  {
-    "nvim-treesitter/nvim-treesitter-context",
-    config = function()
-      require("treesitter-context").setup({
-        enable = true,      -- Enable this plugin (Can be enabled/disabled later via commands)
-        max_lines = 0,      -- How many lines the window should span. Values <= 0 mean no limit.
-        min_window_height = 0, -- Minimum editor window height to enable context. Values <= 0 mean no limit.
-        line_numbers = true,
-        multiline_threshold = 20, -- Maximum number of lines to show for a single context
-        trim_scope = 'outer', -- Which context lines to discard if `max_lines` is exceeded. Choices: 'inner', 'outer'
-        mode = 'cursor',    -- Line used to calculate context. Choices: 'cursor', 'topline'
-        -- Separator between context and content. Should be a single character string, like '-'.
-        -- When separator is set, the context will only show up when there are at least 2 lines above cursorline.
-        separator = nil,
-        zindex = 20, -- The Z-index of the context window
-        on_attach = nil, -- (fun(buf: integer): boolean) return false to disable attaching
-      })
-    end
   },
   {
     "Djancyp/better-comments.nvim",
@@ -181,5 +139,7 @@ local plugins = {
     end,
   },
 }
+
+require "custom.configs.overrides"
 
 return plugins

@@ -7,7 +7,7 @@ M.ui = {
   statusline = {
     theme = "vscode_colored",
     separator_style = "default"
-  }
+  },
 }
 M.plugins = "custom.plugins"
 

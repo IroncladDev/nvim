@@ -1,5 +1,6 @@
 local WIDTH_RATIO = 0.5 -- You can change this too
 
+
 local options = {
   filters = {
     dotfiles = false,
@@ -14,7 +15,13 @@ local options = {
     enable = true,
     update_root = false,
   },
+  ui = {
+    confirm = {
+      default_yes = true
+    }
+  },
   view = {
+    relativenumber = true,
     float = {
       enable = true,
       open_win_config = function()
@@ -23,18 +30,19 @@ local options = {
         local center_x = math.floor(screen_w / 2) - 20
 
         return {
-          border = "rounded",
+          border = "none",
           relative = "editor",
-          row = 2,
+          row = 1,
           col = center_x,
           width = 40,
-          height = screen_h - 4,
+          height = screen_h - 3,
         }
       end,
     },
     width = function()
       return math.floor(vim.opt.columns:get() * WIDTH_RATIO)
     end,
+    number = true
   },
   git = {
     enable = true,

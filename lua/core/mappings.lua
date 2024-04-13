@@ -13,6 +13,11 @@ M.general = {
     ["<C-l>"] = { "<Right>", "Move right" },
     ["<C-j>"] = { "<Down>", "Move down" },
     ["<C-k>"] = { "<Up>", "Move up" },
+    ["<C-a>"] = { "<Left>", "Move left" },
+    ["<C-d>"] = { "<Right>", "Move right" },
+    ["<C-s>"] = { "<Down>", "Move down" },
+    ["<C-w>"] = { "<Up>", "Move up" },
+
   },
 
   n = {
@@ -24,7 +29,7 @@ M.general = {
     ["<C-k>"] = { "<C-w>k", "Window up" },
 
     -- save
-    ["<C-s>"] = { "<cmd> w <CR>", "Save file" },
+    ["<D-s>"] = { "<cmd> w <CR>", "Save file" },
 
     -- Copy all
     ["<C-c>"] = { "<cmd> %y+ <CR>", "Copy whole file" },
@@ -51,11 +56,13 @@ M.general = {
       end,
       "LSP formatting",
     },
-
     ["<leader>q"] = {
       function()
-        vim.cmd "q"
-      end,
+        if #vim.api.nvim_list_wins() > 1 then
+      vim.cmd "q"
+    else
+      print("Cannot quit, only one split open")
+    end      end,
       "Close split"
     }
   },
@@ -84,20 +91,20 @@ M.tabufline = {
   plugin = true,
 
   n = {
-    -- cycle through buffers
-    ["<tab>"] = {
+    ["<C-l>"] = {
       function()
         require("nvchad.tabufline").tabuflineNext()
       end,
       "Goto next buffer",
     },
 
-    ["<S-tab>"] = {
+    ["<C-h>"] = {
       function()
         require("nvchad.tabufline").tabuflinePrev()
       end,
       "Goto prev buffer",
     },
+
 
     -- close buffer + hide terminal buffer
     ["<leader>x"] = {
@@ -346,33 +353,18 @@ M.nvterm = {
       "Toggle vertical term",
     },
 
-    -- new
     ["<leader>h"] = {
       function()
-        vim.cmd("split | enew")
+        vim.cmd("split")
       end,
       "New horizontal split",
     },
 
     ["<leader>v"] = {
       function()
-        vim.cmd("vsplit | enew")
+        vim.cmd("vsplit")
       end,
       "New vertical split",
-    },
-
-    ["<leader>H"] = {
-      function()
-        vim.cmd("split | terminal")
-      end,
-      "Horizontal split with terminal",
-    },
-
-    ["<leader>V"] = {
-      function()
-        vim.cmd("vsplit | terminal")
-      end,
-      "Vertical split with terminal",
     },
   },
 }

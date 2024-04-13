@@ -31,6 +31,9 @@ local formatting_style = {
   end,
 }
 
+vim.api.nvim_set_hl(0, "CmpNormal", { bg = "#313244" })
+vim.api.nvim_set_hl(0, "CmpDocNormal", { bg = "#45475a" })
+
 local options = {
   completion = {
     completeopt = "menu,menuone",
@@ -39,13 +42,13 @@ local options = {
   window = {
     completion = {
       side_padding = (cmp_style ~= "atom" and cmp_style ~= "atom_colored") and 1 or 1,
-      winhighlight = "Normal:CmpDoc,CursorLine:CmpSel,Search:None",
+      winhighlight = "Normal:CmpNormal,CursorLine:CmpSel,Search:None",
       scrollbar = false,
-      border = "rounded"
+      border = "none"
     },
     documentation = {
-      winhighlight = "Normal:CmpDoc",
-      border = "rounded"
+      winhighlight = "Normal:CmpDocNormal",
+      border = "none"
     },
   },
 
@@ -62,7 +65,27 @@ local options = {
       behavior = cmp.ConfirmBehavior.Insert,
       select = true,
     },
-    ["<Tab>"] = cmp.mapping(function(fallback)
+    ["<C-k>"] = cmp.mapping(function(fallback)
+      if cmp.visible() then
+        cmp.select_prev_item()
+      else
+        fallback()
+      end
+    end, {
+      "i",
+      "s",
+    }),
+    ["<C-j>"] = cmp.mapping(function(fallback)
+      if cmp.visible() then
+        cmp.select_next_item()
+      else
+        fallback()
+      end
+    end, {
+      "i",
+      "s",
+    }),
+    ["<tab>"] = cmp.mapping(function(fallback)
       if cmp.visible() then
         cmp.select_next_item()
       else
@@ -87,16 +110,6 @@ local options = {
           cmp.complete()
         end
       end,
-    }),
-    ["<S-Tab>"] = cmp.mapping(function(fallback)
-      if cmp.visible() then
-        cmp.select_prev_item()
-      else
-        fallback()
-      end
-    end, {
-      "i",
-      "s",
     }),
   },
   sources = {

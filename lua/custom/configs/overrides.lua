@@ -1,9 +1,6 @@
 local M = {}
 
-M.copilot = {
-  suggestion = {
-    auto_trigger = true,
-  }
-}
+vim.api.nvim_set_option('relativenumber', true)
+vim.api.nvim_set_option('number', true)
 
 return M

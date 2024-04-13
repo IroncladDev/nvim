@@ -4,10 +4,14 @@ local capabilities = config.capabilities
 
 local lspconfig = require("lspconfig")
 
-lspconfig.tsserver.setup {
-  on_attach = on_attach,
-  capabilities = capabilities,
-}
+local servers = { "tsserver", "tailwindcss", "eslint" }
+
+for _, lsp in ipairs(servers) do
+  lspconfig[lsp].setup {
+    on_attach = on_attach,
+    capabilities = capabilities
+  }
+end
 
 lspconfig.lua_ls.setup {
   settings = {
@@ -20,8 +24,3 @@ lspconfig.lua_ls.setup {
 }
 
 lspconfig.prismals.setup {}
-
-lspconfig.tailwindcss.setup({
-  on_attach = on_attach,
-  capabilities = capabilities,
-})
