@@ -42,13 +42,13 @@ local plugins = {
       return opts
     end
   },
-  -- {
-  --   "Pocco81/auto-save.nvim",
-  --   event = { "InsertLeave", "TextChanged" },
-  --   config = function()
-  --     require("auto-save").setup({})
-  --   end,
-  -- },
+  {
+    "Pocco81/auto-save.nvim",
+    event = { "InsertLeave", "TextChanged" },
+    config = function()
+      require("auto-save").setup({})
+    end,
+  },
   {
     "rmagatti/auto-session",
     config = function()
