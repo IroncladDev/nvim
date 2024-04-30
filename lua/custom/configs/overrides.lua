@@ -6,3 +6,5 @@ vim.api.nvim_set_option('number', true)
 vim.cmd([[autocmd FocusGained * checktime]])
 
 return M
+
+-- this is a test
