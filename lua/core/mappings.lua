@@ -5,7 +5,7 @@ local M = {}
 M.general = {
   i = {
     -- go to  beginning and end
-    ["<C-b>"] = { "<ESC>^i", "Beginning of line" },
+    ["<C-s>"] = { "<ESC>^i", "Start of line" },
     ["<C-e>"] = { "<End>", "End of line" },
 
     -- navigate within insert mode
@@ -13,11 +13,6 @@ M.general = {
     ["<C-l>"] = { "<Right>", "Move right" },
     ["<C-j>"] = { "<Down>", "Move down" },
     ["<C-k>"] = { "<Up>", "Move up" },
-    ["<C-a>"] = { "<Left>", "Move left" },
-    ["<C-d>"] = { "<Right>", "Move right" },
-    ["<C-s>"] = { "<Down>", "Move down" },
-    ["<C-w>"] = { "<Up>", "Move up" },
-
   },
 
   n = {
@@ -59,16 +54,17 @@ M.general = {
     ["<leader>q"] = {
       function()
         if #vim.api.nvim_list_wins() > 1 then
-      vim.cmd "q"
-    else
-      print("Cannot quit, only one split open")
-    end      end,
+          vim.cmd "q"
+        else
+          print("Cannot quit, only one split open")
+        end
+      end,
       "Close split"
     }
   },
 
   t = {
-    ["<Esc>"] = { vim.api.nvim_replace_termcodes("<C-\\><C-N>", true, true, true), "Escape terminal mode" },
+    ["<C-x>"] = { vim.api.nvim_replace_termcodes("<C-\\><C-N>", true, true, true), "Escape terminal mode" },
   },
 
   v = {
@@ -271,7 +267,7 @@ M.nvimtree = {
 
   n = {
     -- toggle
-    ["<leader>b"] = { "<cmd> NvimTreeToggle <CR>", "Toggle nvimtree" },
+    ["<C-b>"] = { "<cmd> NvimTreeToggle <CR>", "Toggle nvimtree" },
   },
 }
 
@@ -290,7 +286,7 @@ M.telescope = {
     ["<leader>fz"] = { "<cmd> Telescope current_buffer_fuzzy_find <CR>", "Find in current buffer" },
 
     -- git
-    ["<leader>cm"] = { "<cmd> Telescope git_commits <CR>", "Git commits" },
+    ["<leader>gc"] = { "<cmd> Telescope git_commits <CR>", "Git commits" },
     ["<leader>gt"] = { "<cmd> Telescope git_status <CR>", "Git status" },
 
     -- pick a hidden term
@@ -299,7 +295,7 @@ M.telescope = {
     -- theme switcher
     ["<leader>th"] = { "<cmd> Telescope themes <CR>", "Nvchad themes" },
 
-    ["<leader>ma"] = { "<cmd> Telescope marks <CR>", "telescope bookmarks" },
+    ["<leader>mk"] = { "<cmd> Telescope marks <CR>", "telescope bookmarks" },
   },
 }
 
@@ -307,22 +303,22 @@ M.nvterm = {
   plugin = true,
 
   t = {
-    -- toggle in terminal mode
-    ["<A-i>"] = {
+    ["<C-f>"] = {
       function()
         require("nvterm.terminal").toggle "float"
       end,
       "Toggle floating term",
     },
 
-    ["<A-h>"] = {
+
+    ["<C-h>"] = {
       function()
         require("nvterm.terminal").toggle "horizontal"
       end,
       "Toggle horizontal term",
     },
 
-    ["<A-v>"] = {
+    ["<C-v>"] = {
       function()
         require("nvterm.terminal").toggle "vertical"
       end,
@@ -332,35 +328,35 @@ M.nvterm = {
 
   n = {
     -- toggle in normal mode
-    ["<A-i>"] = {
+    ["<C-f>"] = {
       function()
         require("nvterm.terminal").toggle "float"
       end,
       "Toggle floating term",
     },
 
-    ["<A-h>"] = {
+    ["<C-h>"] = {
       function()
         require("nvterm.terminal").toggle "horizontal"
       end,
       "Toggle horizontal term",
     },
 
-    ["<A-v>"] = {
+    ["<C-v>"] = {
       function()
         require("nvterm.terminal").toggle "vertical"
       end,
       "Toggle vertical term",
     },
 
-    ["<leader>h"] = {
+    ["<leader>hs"] = {
       function()
         vim.cmd("split")
       end,
       "New horizontal split",
     },
 
-    ["<leader>v"] = {
+    ["<leader>vs"] = {
       function()
         vim.cmd("vsplit")
       end,

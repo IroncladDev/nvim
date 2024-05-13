@@ -138,6 +138,13 @@ local plugins = {
       crates.show()
     end,
   },
+  {
+    'glacambre/firenvim',
+    lazy = not vim.g.started_by_firenvim,
+    build = function()
+      vim.fn["firenvim#install"](0)
+    end
+  }
 }
 
 require "custom.configs.overrides"

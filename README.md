@@ -4,11 +4,10 @@ My custom neovim configuration repo.
 
 ## Custom Keybindings
 
-- `Escape` - exit terminal mode
-- `<leader>h` - open a horizontal split
-- `<leader>v` - open a vertical split
-- `<leader>H` - open a horizontal split with a terminal
-- `<leader>V` - open a vertical split with a terminal
+- `C-b` - Toggle Filetree
+- `C-f` - Toggle Floating Term
+- `C-v` - Toggle Vertical Term
+- `C-h` - Toggle Horizontal Term
 
 ## Misc
 
