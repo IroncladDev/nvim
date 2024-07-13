@@ -83,16 +83,17 @@ local options = {
       "i",
       "s",
     }),
-    ["<tab>"] = cmp.mapping(function(fallback)
-      if cmp.visible() then
-        cmp.select_next_item()
+    ['<Tab>'] = function(fallback)
+      if vim.fn.pumvisible() == 1 then
+        if vim.b.supermaven_suggestion then
+          vim.fn.feedkeys(vim.api.nvim_replace_termcodes('<C-y>', true, true, true), 'n')
+        else
+          cmp.select_next_item()
+        end
       else
         fallback()
       end
-    end, {
-      "i",
-      "s",
-    }),
+    end,
     ["<C-u>"] = cmp.mapping({
       i = function()
         if cmp.visible() then
@@ -111,10 +112,11 @@ local options = {
     }),
   },
   sources = {
-    { name = "nvim_lsp" },
-    { name = "buffer" },
-    { name = "nvim_lua" },
-    { name = "path" },
+    { name = "nvim_lsp", priority = 900 },
+    { name = "buffer", priority = 800 },
+    { name = "nvim_lua", priority = 700 },
+    { name = "path", priority = 600 },
+    { name = "calc", priority = 500 },
   },
 }
 

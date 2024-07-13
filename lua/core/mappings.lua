@@ -41,6 +41,7 @@ M.general = {
     ["k"] = { 'v:count || mode(1)[0:1] == "no" ? "k" : "gk"', "Move up", opts = { expr = true } },
     ["<Up>"] = { 'v:count || mode(1)[0:1] == "no" ? "k" : "gk"', "Move up", opts = { expr = true } },
     ["<Down>"] = { 'v:count || mode(1)[0:1] == "no" ? "j" : "gj"', "Move down", opts = { expr = true } },
+    ["<C-s>"] = { "<cmd> w <CR>", "Save" },
 
     -- new buffer
     ["<leader>ch"] = { "<cmd> NvCheatsheet <CR>", "Mapping cheatsheet" },
@@ -51,6 +52,10 @@ M.general = {
       end,
       "LSP formatting",
     },
+    ["<leader>fx"] = {
+      "<cmd> silent! !dx fmt <CR>",
+      "Dioxus formatting",
+    },
     ["<leader>q"] = {
       function()
         if #vim.api.nvim_list_wins() > 1 then
@@ -60,6 +65,10 @@ M.general = {
         end
       end,
       "Close split"
+    },
+    ["gl"] = {
+      "<cmd> URLOpenUnderCursor<cr>",
+      "Open URL under cursor"
     }
   },
 
@@ -94,7 +103,7 @@ M.tabufline = {
       "Goto next buffer",
     },
 
-    ["<C-tab>"] = {
+    ["<S-tab>"] = {
       function()
         require("nvchad.tabufline").tabuflinePrev()
       end,
@@ -311,7 +320,7 @@ M.nvterm = {
     },
 
 
-    ["<C-h>"] = {
+    ["<C-p>"] = {
       function()
         require("nvterm.terminal").toggle "horizontal"
       end,
@@ -335,7 +344,7 @@ M.nvterm = {
       "Toggle floating term",
     },
 
-    ["<C-h>"] = {
+    ["<C-p>"] = {
       function()
         require("nvterm.terminal").toggle "horizontal"
       end,

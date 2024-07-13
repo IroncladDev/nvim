@@ -4,14 +4,40 @@ local capabilities = config.capabilities
 
 local lspconfig = require("lspconfig")
 
-local servers = { "tsserver", "tailwindcss", "eslint" }
+lspconfig.tsserver.setup {
+  on_attach = on_attach,
+  capabilities = capabilities
+}
 
-for _, lsp in ipairs(servers) do
-  lspconfig[lsp].setup {
-    on_attach = on_attach,
-    capabilities = capabilities
+lspconfig.tailwindcss.setup {
+  on_attach = on_attach,
+  capabilities = capabilities,
+  settings = {
+    tailwindCSS = {
+      experimental = {
+        classRegex = {
+          '"([^"]*)"',
+          { '@apply\\s+(.*)$', '[^\\w]([\\w-]+)' },
+        }
+      },
+      validate = true
+    }
+  },
+  filetypes = {
+    "typescriptreact", "html", "rust", "css"
+  },
+  root_dir = lspconfig.util.root_pattern('tailwind.config.js', 'tailwind.config.ts'),
+  init_options = {
+    userLanguages = {
+      rust = "html",
+    }
   }
-end
+}
+
+lspconfig.eslint.setup {
+  on_attach = on_attach,
+  capabilities = capabilities
+}
 
 lspconfig.lua_ls.setup {
   settings = {

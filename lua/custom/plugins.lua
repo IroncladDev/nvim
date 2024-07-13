@@ -14,7 +14,6 @@ local plugins = {
         "prettierd",
         "typescript-language-server",
         "lua-language-server",
-        "prisma-language-server",
         "tailwindcss-language-server",
         "rust-analyzer"
       }
@@ -81,37 +80,6 @@ local plugins = {
     event = "VeryLazy"
   },
   {
-    "Djancyp/better-comments.nvim",
-    config = function()
-      require("better-comment").Setup({
-        tags = {
-          {
-            name = "TODO",
-            fg = "#348ceb",
-            bg = "",
-            bold = true,
-            virtual_text = ""
-          },
-          {
-            name = "?",
-            fg = "#905fd4",
-            bg = "",
-            bold = true,
-            virtual_text = ""
-          },
-          {
-            name = "!",
-            fg = "#ffcc6c",
-            bg = "",
-            bold = true,
-            virtual_text = ""
-          },
-        }
-      })
-    end,
-    event = "VeryLazy"
-  },
-  {
     "rust-lang/rust.vim",
     ft = "rust",
     init = function()
@@ -139,11 +107,28 @@ local plugins = {
     end,
   },
   {
-    'glacambre/firenvim',
-    lazy = not vim.g.started_by_firenvim,
-    build = function()
-      vim.fn["firenvim#install"](0)
-    end
+    "hrsh7th/nvim-cmp",
+    opts = function()
+      local M = require "plugins.configs.cmp"
+      table.insert(M.sources, { name = "crates" })
+      table.insert(M.sources, { name = "nvim_lsp", priority = 900 })
+      table.insert(M.sources, { name = "supermaven", priority = 1000 })
+      return M
+    end,
+  },
+  {
+    "supermaven-inc/supermaven-nvim",
+    event = "VeryLazy",
+    config = function()
+      require("supermaven-nvim").setup({
+        keymaps = {
+          accept_suggestion = "<Tab>",
+          clear_suggestion = "<C-x>",
+          accept_word = "<C-w>",
+        },
+        disable_inline_completion = false,
+      })
+    end,
   }
 }
 
