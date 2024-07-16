@@ -58,7 +58,7 @@ local options = {
     ["<C-p>"] = cmp.mapping.select_prev_item(),
     ["<C-n>"] = cmp.mapping.select_next_item(),
     ["<C-Space>"] = cmp.mapping.complete(),
-    ["<C-e>"] = cmp.mapping.close(),
+    ["<esc>"] = cmp.mapping.close(),
     ["<CR>"] = cmp.mapping.confirm {
       behavior = cmp.ConfirmBehavior.Insert,
       select = true,
@@ -83,17 +83,16 @@ local options = {
       "i",
       "s",
     }),
-    ['<Tab>'] = function(fallback)
-      if vim.fn.pumvisible() == 1 then
-        if vim.b.supermaven_suggestion then
-          vim.fn.feedkeys(vim.api.nvim_replace_termcodes('<C-y>', true, true, true), 'n')
-        else
-          cmp.select_next_item()
-        end
+    ["<tab>"] = cmp.mapping(function(fallback)
+      if cmp.visible() then
+        cmp.select_next_item()
       else
         fallback()
       end
-    end,
+    end, {
+      "i",
+      "s",
+    }),
     ["<C-u>"] = cmp.mapping({
       i = function()
         if cmp.visible() then
@@ -112,11 +111,10 @@ local options = {
     }),
   },
   sources = {
-    { name = "nvim_lsp", priority = 900 },
-    { name = "buffer", priority = 800 },
-    { name = "nvim_lua", priority = 700 },
-    { name = "path", priority = 600 },
-    { name = "calc", priority = 500 },
+    { name = "nvim_lsp" },
+    { name = "buffer" },
+    { name = "nvim_lua" },
+    { name = "path" },
   },
 }
 

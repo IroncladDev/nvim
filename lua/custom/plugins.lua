@@ -111,8 +111,6 @@ local plugins = {
     opts = function()
       local M = require "plugins.configs.cmp"
       table.insert(M.sources, { name = "crates" })
-      table.insert(M.sources, { name = "nvim_lsp", priority = 900 })
-      table.insert(M.sources, { name = "supermaven", priority = 1000 })
       return M
     end,
   },
