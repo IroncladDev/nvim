@@ -120,8 +120,8 @@ local plugins = {
     config = function()
       require("supermaven-nvim").setup({
         keymaps = {
-          accept_suggestion = "<Tab>",
-          clear_suggestion = "<C-x>",
+          accept_suggestion = "<C-g>",
+          clear_suggestion = "<C-c>",
           accept_word = "<C-w>",
         },
         disable_inline_completion = false,

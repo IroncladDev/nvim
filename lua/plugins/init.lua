@@ -215,13 +215,6 @@ local default_plugins = {
     config = function(_, opts)
       dofile(vim.g.base46_cache .. "nvimtree")
       require("nvim-tree").setup(opts)
-
-      vim.cmd([[
-        highlight NvimTreeNormal guibg=#313244
-        highlight NvimTreeNormalFloat guibg=#313244
-        highlight NvimTreeCursorLine guibg=#45475a
-        highlight NvimTreeLineNr guibg=#313244 guifg=#585b70
-      ]])
     end,
   },
 

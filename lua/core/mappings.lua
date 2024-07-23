@@ -17,17 +17,18 @@ M.general = {
 
   n = {
     ["<Esc>"] = { "<cmd> noh <CR>", "Clear highlights" },
+
     -- switch between windows
-    ["<C-h>"] = { "<C-w>h", "Window left" },
-    ["<C-l>"] = { "<C-w>l", "Window right" },
-    ["<C-j>"] = { "<C-w>j", "Window down" },
-    ["<C-k>"] = { "<C-w>k", "Window up" },
+    ["<Left>"] = { "<C-w>h", "Window left" },
+    ["<Right>"] = { "<C-w>l", "Window right" },
+    ["<Down>"] = { "<C-w>j", "Window down" },
+    ["<Up>"] = { "<C-w>k", "Window up" },
 
-    -- save
-    ["<D-s>"] = { "<cmd> w <CR>", "Save file" },
-
-    -- Copy all
-    ["<C-c>"] = { "<cmd> %y+ <CR>", "Copy whole file" },
+    -- navigate within blocks in normal mode
+    ["<C-h>"] = { "^", "Start of line" },
+    ["<C-j>"] = { "}", "End of line" },
+    ["<C-k>"] = { "{", "Start of line" },
+    ["<C-l>"] = { "$", "End of line" },
 
     -- line numbers
     ["<leader>n"] = { "<cmd> set nu! <CR>", "Toggle line number" },
@@ -39,8 +40,6 @@ M.general = {
     -- also don't use g[j|k] when in operator pending mode, so it doesn't alter d, y or c behaviour
     ["j"] = { 'v:count || mode(1)[0:1] == "no" ? "j" : "gj"', "Move down", opts = { expr = true } },
     ["k"] = { 'v:count || mode(1)[0:1] == "no" ? "k" : "gk"', "Move up", opts = { expr = true } },
-    ["<Up>"] = { 'v:count || mode(1)[0:1] == "no" ? "k" : "gk"', "Move up", opts = { expr = true } },
-    ["<Down>"] = { 'v:count || mode(1)[0:1] == "no" ? "j" : "gj"', "Move down", opts = { expr = true } },
     ["<C-s>"] = { "<cmd> w <CR>", "Save" },
 
     -- new buffer
@@ -66,21 +65,21 @@ M.general = {
       end,
       "Close split"
     },
-    ["gl"] = {
-      "<cmd> URLOpenUnderCursor<cr>",
-      "Open URL under cursor"
-    }
   },
 
   t = {
-    ["<C-x>"] = { vim.api.nvim_replace_termcodes("<C-\\><C-N>", true, true, true), "Escape terminal mode" },
+    ["<esc>"] = { vim.api.nvim_replace_termcodes("<C-\\><C-N>", true, true, true), "Escape terminal mode" },
   },
 
   v = {
-    ["<Up>"] = { 'v:count || mode(1)[0:1] == "no" ? "k" : "gk"', "Move up", opts = { expr = true } },
-    ["<Down>"] = { 'v:count || mode(1)[0:1] == "no" ? "j" : "gj"', "Move down", opts = { expr = true } },
     ["<"] = { "<gv", "Indent line" },
     [">"] = { ">gv", "Indent line" },
+
+    -- navigate within blocks in visual mode
+    ["<C-h>"] = { "^", "Start of line" },
+    ["<C-j>"] = { "}", "End of line" },
+    ["<C-k>"] = { "{", "Start of line" },
+    ["<C-l>"] = { "$", "End of line" },
   },
 
   x = {
@@ -293,6 +292,7 @@ M.telescope = {
     ["<leader>fh"] = { "<cmd> Telescope help_tags <CR>", "Help page" },
     ["<leader>fo"] = { "<cmd> Telescope oldfiles <CR>", "Find oldfiles" },
     ["<leader>fz"] = { "<cmd> Telescope current_buffer_fuzzy_find <CR>", "Find in current buffer" },
+    ["<leader>tc"] = { "<cmd> Telescope commands <CR>", "Telescope commands" },
 
     -- git
     ["<leader>gc"] = { "<cmd> Telescope git_commits <CR>", "Git commits" },
