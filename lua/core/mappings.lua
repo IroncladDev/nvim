@@ -12,17 +12,17 @@ M.general = {
     ["<C-h>"] = { "<Left>", "Move left" },
     ["<C-l>"] = { "<Right>", "Move right" },
     ["<C-j>"] = { "<Down>", "Move down" },
-    ["<C-k>"] = { "<Up>", "Move up" },
+    ["<C-k>"] = { "<Up>", "Move up" }
   },
 
   n = {
     ["<Esc>"] = { "<cmd> noh <CR>", "Clear highlights" },
 
     -- switch between windows
-    ["<Left>"] = { "<C-w>h", "Window left" },
-    ["<Right>"] = { "<C-w>l", "Window right" },
-    ["<Down>"] = { "<C-w>j", "Window down" },
-    ["<Up>"] = { "<C-w>k", "Window up" },
+    ["<leader>wh"] = { "<C-w>h", "Window left" },
+    ["<leader>wl"] = { "<C-w>l", "Window right" },
+    ["<leader>wj"] = { "<C-w>j", "Window down" },
+    ["<leader>wk"] = { "<C-w>k", "Window up" },
 
     -- navigate within blocks in normal mode
     ["<C-h>"] = { "^", "Start of line" },
@@ -55,7 +55,7 @@ M.general = {
       "<cmd> silent! !dx fmt <CR>",
       "Dioxus formatting",
     },
-    ["<leader>q"] = {
+    ["<leader>wq"] = {
       function()
         if #vim.api.nvim_list_wins() > 1 then
           vim.cmd "q"
@@ -64,7 +64,7 @@ M.general = {
         end
       end,
       "Close split"
-    },
+    }
   },
 
   t = {
@@ -217,46 +217,18 @@ M.lspconfig = {
       "Floating diagnostic",
     },
 
-    ["[d"] = {
+    ["<leader>dp"] = {
       function()
         vim.diagnostic.goto_prev { float = { border = "rounded" } }
       end,
       "Goto prev",
     },
 
-    ["]d"] = {
+    ["<leader>dn"] = {
       function()
         vim.diagnostic.goto_next { float = { border = "rounded" } }
       end,
       "Goto next",
-    },
-
-    ["<leader>q"] = {
-      function()
-        vim.diagnostic.setloclist()
-      end,
-      "Diagnostic setloclist",
-    },
-
-    ["<leader>wa"] = {
-      function()
-        vim.lsp.buf.add_workspace_folder()
-      end,
-      "Add workspace folder",
-    },
-
-    ["<leader>wr"] = {
-      function()
-        vim.lsp.buf.remove_workspace_folder()
-      end,
-      "Remove workspace folder",
-    },
-
-    ["<leader>wl"] = {
-      function()
-        print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-      end,
-      "List workspace folders",
     },
   },
 
@@ -275,7 +247,7 @@ M.nvimtree = {
 
   n = {
     -- toggle
-    ["<C-b>"] = { "<cmd> NvimTreeToggle <CR>", "Toggle nvimtree" },
+    ["<leader>b"] = { "<cmd> NvimTreeToggle <CR>", "Toggle nvimtree" },
   },
 }
 
@@ -374,26 +346,6 @@ M.nvterm = {
   },
 }
 
-M.whichkey = {
-  plugin = true,
-
-  n = {
-    ["<leader>wK"] = {
-      function()
-        vim.cmd "WhichKey"
-      end,
-      "Which-key all keymaps",
-    },
-    ["<leader>wk"] = {
-      function()
-        local input = vim.fn.input "WhichKey: "
-        vim.cmd("WhichKey " .. input)
-      end,
-      "Which-key query lookup",
-    },
-  },
-}
-
 M.blankline = {
   plugin = true,
 
@@ -414,6 +366,10 @@ M.blankline = {
       "Jump to current context",
     },
   },
+}
+
+M.whichkey = {
+  plugin = true,
 }
 
 M.gitsigns = {

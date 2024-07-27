@@ -55,44 +55,16 @@ local options = {
   formatting = formatting_style,
 
   mapping = {
-    ["<C-p>"] = cmp.mapping.select_prev_item(),
-    ["<C-n>"] = cmp.mapping.select_next_item(),
+    ["<C-k>"] = cmp.mapping.select_prev_item(),
+    ["<C-j>"] = cmp.mapping.select_next_item(),
+    ["<tab>"] = cmp.mapping.select_next_item(),
+    ["<S-tab>"] = cmp.mapping.select_prev_item(),
     ["<C-Space>"] = cmp.mapping.complete(),
     ["<C-e>"] = cmp.mapping.close(),
     ["<CR>"] = cmp.mapping.confirm {
       behavior = cmp.ConfirmBehavior.Insert,
       select = true,
     },
-    ["<C-k>"] = cmp.mapping(function(fallback)
-      if cmp.visible() then
-        cmp.select_prev_item()
-      else
-        fallback()
-      end
-    end, {
-      "i",
-      "s",
-    }),
-    ["<C-j>"] = cmp.mapping(function(fallback)
-      if cmp.visible() then
-        cmp.select_next_item()
-      else
-        fallback()
-      end
-    end, {
-      "i",
-      "s",
-    }),
-    ["<tab>"] = cmp.mapping(function(fallback)
-      if cmp.visible() then
-        cmp.select_next_item()
-      else
-        fallback()
-      end
-    end, {
-      "i",
-      "s",
-    }),
     ["<C-u>"] = cmp.mapping({
       i = function()
         if cmp.visible() then

@@ -21,7 +21,6 @@ local options = {
     }
   },
   view = {
-    relativenumber = true,
     float = {
       enable = true,
       open_win_config = function()
@@ -42,7 +41,7 @@ local options = {
     width = function()
       return math.floor(vim.opt.columns:get() * WIDTH_RATIO)
     end,
-    number = true
+    number = false
   },
   git = {
     enable = true,
