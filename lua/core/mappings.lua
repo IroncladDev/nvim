@@ -47,13 +47,15 @@ M.general = {
 
     ["<leader>fm"] = {
       function()
-        vim.lsp.buf.format { async = false }
+        if vim.bo.filetype == "rust" then
+          local job = vim.fn.jobstart("RustFmt")
+          vim.fn.jobwait({ job }, 1000)
+          vim.cmd("silent! !dx fmt")
+        else
+          vim.lsp.buf.format { async = false }
+        end
       end,
       "LSP formatting",
-    },
-    ["<leader>fx"] = {
-      "<cmd> silent! !dx fmt <CR>",
-      "Dioxus formatting",
     },
     ["<leader>wq"] = {
       function()
@@ -64,7 +66,9 @@ M.general = {
         end
       end,
       "Close split"
-    }
+    },
+
+    ["<C-u>"] = { "<C-r>", "Redo", { noremap = true, silent = true } },
   },
 
   t = {
