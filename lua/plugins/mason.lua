@@ -4,7 +4,7 @@ return {
         "williamboman/mason-lspconfig.nvim",
     },
     ensure_installed = {
-        "prettierd",
+        "prettier",
         "eslint-lsp",
         "stylua"
     },
@@ -19,7 +19,10 @@ return {
                 "lua_ls",
                 "tsserver",
                 "tailwindcss",
-                "rust_analyzer"
+                "rust_analyzer",
+                "html",
+                "cssls",
+                "jsonls",
             },
             automatic_installation = true
         })

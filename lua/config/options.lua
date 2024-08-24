@@ -1,8 +1,8 @@
 -- Set tab width to four spaces
-vim.o.tabstop = 4
-vim.o.expandtab = true
-vim.o.softtabstop = 4
-vim.o.shiftwidth = 4
+vim.opt.tabstop = 4
+vim.opt.expandtab = true
+vim.opt.softtabstop = 4
+vim.opt.shiftwidth = 4
 
 -- Sync clipboard
 vim.api.nvim_set_option("clipboard", "unnamedplus")
@@ -23,3 +23,15 @@ vim.o.equalalways = false
 
 -- Prevent layout shift from diagnostics
 vim.opt.signcolumn = 'yes'
+
+-- Gitsigns git refresh rate
+vim.opt.updatetime = 250
+
+-- Automatically reload files when focused or changed
+vim.cmd[[
+augroup AutoReload
+    autocmd!
+    autocmd FocusGained,BufEnter,CursorHold,CursorHoldI * checktime
+    autocmd FileChangedShellPost * e!
+augroup END
+]]
