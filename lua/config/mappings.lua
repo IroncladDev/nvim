@@ -50,9 +50,33 @@ vim.keymap.set("n", "<leader>wj", "<C-w>j", { desc = "Window down" })
 vim.keymap.set("n", "<leader>wk", "<C-w>k", { desc = "Window up" })
 vim.keymap.set("n", "<leader>wl", "<C-w>l", { desc = "Window right" })
 
--- Move up and down through wrapped lines in normal/terminal mode
-vim.keymap.set({ "n", "x" }, "j", 'v:count || mode(1)[0:1] == "no" ? "j" : "gj"', { desc = "Move down", expr = true })
-vim.keymap.set({ "n", "x" }, "k", 'v:count || mode(1)[0:1] == "no" ? "k" : "gk"', { desc = "Move up", expr = true })
+-- Move up and down through wrapped lines in normal/terminal/visual mode
+vim.keymap.set(
+	{ "n", "v" },
+	"j",
+	'v:count || mode(1)[0:1] == "no" ? "j" : "gj"',
+	{ desc = "Move down", expr = true, noremap = true }
+)
+vim.keymap.set(
+	{ "n", "v" },
+	"k",
+	'v:count || mode(1)[0:1] == "no" ? "k" : "gk"',
+	{ desc = "Move up", expr = true, noremap = true }
+)
+
+-- Move to the next/previous line if at the first/last column
+vim.keymap.set(
+	{ "n", "v" },
+	"h",
+	'v:count == 0 && col(".") == 1 ? "k$" : "h"',
+	{ desc = "Move left", expr = true, noremap = true }
+)
+vim.keymap.set(
+	{ "n", "v" },
+	"l",
+	'v:count == 0 && col(".") == col("$") - 1 ? "j0" : "l"',
+	{ desc = "Move right", expr = true, noremap = true }
+)
 
 -- Additional movement
 vim.keymap.set({ "n", "v" }, "<C-h>", "^", { desc = "Start of line" })
