@@ -22,16 +22,16 @@ vim.wo.relativenumber = true
 vim.o.equalalways = false
 
 -- Prevent layout shift from diagnostics
-vim.opt.signcolumn = 'yes'
+vim.opt.signcolumn = "yes"
 
 -- Gitsigns git refresh rate
 vim.opt.updatetime = 250
 
 -- Automatically reload files when focused or changed
-vim.cmd[[
+vim.cmd([[
 augroup AutoReload
     autocmd!
     autocmd FocusGained,BufEnter,CursorHold,CursorHoldI * checktime
     autocmd FileChangedShellPost * e!
 augroup END
-]]
+]])

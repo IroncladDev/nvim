@@ -6,7 +6,8 @@ return {
     ensure_installed = {
         "prettier",
         "eslint-lsp",
-        "stylua"
+        "stylua",
+        "nixpkgs-fmt",
     },
     config = function()
         local mason = require("mason")
@@ -17,7 +18,7 @@ return {
         mason_lspconfig.setup({
             ensure_installed = {
                 "lua_ls",
-                "tsserver",
+                "ts_ls",
                 "tailwindcss",
                 "rust_analyzer",
                 "html",

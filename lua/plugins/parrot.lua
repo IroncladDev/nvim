@@ -23,13 +23,9 @@ return {
 	config = function()
 		require("parrot").setup({
 			providers = {
-				pplx = {
-					api_key = os.getenv("PERPLEXITY_API_KEY"),
-				},
 				openai = {
 					api_key = os.getenv("OPENAI_API_KEY"),
 				},
-				ollama = {},
 			},
             system_prompt = {
                 chat = prompt,

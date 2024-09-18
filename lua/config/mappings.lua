@@ -25,6 +25,7 @@ vim.keymap.set("n", "<leader>fw", "<cmd> Telescope live_grep <CR>", { desc = "Li
 vim.keymap.set("n", "<leader>gc", "<cmd> Telescope git_commits <CR>", { desc = "Git commits" })
 vim.keymap.set("n", "<leader>gt", "<cmd> Telescope git_status <CR>", { desc = "Git status" })
 vim.keymap.set("n", "<leader>tc", "<cmd> Telescope commands <CR>", { desc = "Show commands" })
+vim.keymap.set("n", "<leader>tn", "<cmd> Telescope notify <CR>", { desc = "Show notifications" })
 
 -- Lspconfig
 vim.keymap.set("n", "<leader>lf", vim.diagnostic.open_float, { desc = "Floating Diagnostics" })
@@ -109,7 +110,7 @@ vim.keymap.set(
 )
 
 -- Terminal Mode
-vim.api.nvim_set_keymap("t", "<Esc>", [[<C-\><C-n>]], { noremap = true })
+vim.api.nvim_set_keymap("t", "<C-x>", [[<C-\><C-n>]], { noremap = true })
 
 -- Splits
 vim.api.nvim_set_keymap("n", "<leader>sh", ":vnew<CR> <C-w>h", { desc = "New split left" })
@@ -137,6 +138,10 @@ vim.keymap.set({ "n", "v" }, "<leader>as", ":PrtChatStop<CR>", { desc = "Parrot 
 vim.keymap.set({ "n", "v" }, "<leader>ad", ":PrtChatDelete<CR>", { desc = "Parrot Delete Chat" })
 vim.keymap.set({ "n", "v" }, "<leader>ap", ":PrtProvider<CR>", { desc = "Parrot Select Provider" })
 vim.keymap.set({ "n", "v" }, "<leader>am", ":PrtModel<CR>", { desc = "Parrot Select Model" })
+vim.keymap.set({ "v" }, "<leader>rw", ":PrtRewrite<CR>", { desc = "Rewrite" })
 
 -- ToggleTerm
 vim.keymap.set({ "n", "v", "i", "t" }, "<C-f>", "<cmd> ToggleTerm<CR>", { desc = "Toggle Terminal" })
+
+-- Folding
+vim.keymap.set("n", "<leader>fb", "$zf%", { desc = "Fold block" })

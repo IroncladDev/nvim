@@ -26,5 +26,5 @@ end
 loadEnvFile(vim.fn.stdpath("config") .. "/.env")
 
 require("config.mappings")
-require("config.lazy")
 require("config.options")
+require("config.lazy")

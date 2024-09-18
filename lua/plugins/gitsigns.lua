@@ -21,62 +21,31 @@ return {
 
 		local on_attach = function(bufnr)
 			local gitsigns = require("gitsigns")
-			opts.buffer = bufnr
 
-			opts.desc = "Reset hunk"
-			vim.keymap.set("n", "<leader>rh", function()
-				gitsigns.reset_hunk()
-			end, opts)
+			local function map(mode, l, r, o)
+				opts = opts or {}
+				opts.buffer = bufnr
+				vim.keymap.set(mode, l, r, o)
+			end
 
-			opts.desc = "Preview hunk"
-			vim.keymap.set("n", "<leader>ph", function()
-				gitsigns.preview_hunk()
-			end, opts)
-
-			opts.desc = "Blame line"
-			vim.keymap.set("n", "<leader>gb", function()
-				package.loaded.gitsigns.blame_line()
-			end, opts)
-
-			opts.desc = "Toggle deleted"
-			vim.keymap.set("n", "<leader>td", function()
-				gitsigns.toggle_deleted()
-			end, opts)
-
-			opts.desc = "Next hunk"
-			opts.expr = true
-			vim.keymap.set("n", "]c", function()
-				if vim.wo.diff then
-					return "]c"
-				end
-				vim.schedule(function()
-					gitsigns.next_hunk()
-				end)
-				return "<Ignore>"
-			end, opts)
-
-			opts.desc = "Prev hunk"
-			vim.keymap.set("n", "[c", function()
-				if vim.wo.diff then
-					return "[c"
-				end
-				vim.schedule(function()
-					gitsigns.prev_hunk()
-				end)
-				return "<Ignore>"
-			end, opts)
+			map("n", "<leader>rh", gitsigns.reset_hunk, { desc = "Reset hunk" })
+			map("n", "<leader>ph", gitsigns.preview_hunk, { desc = "Preview hunk" })
+			map("n", "<leader>pi", gitsigns.preview_hunk_inline, { desc = "Preview hunk inline" })
+            map("n", "<leader>gb", gitsigns.blame_line, { desc = "Blame line" })
+            map("n", "<leader>hn", gitsigns.next_hunk, { desc = "Next hunk" })
+            map("n", "<leader>hp", gitsigns.prev_hunk, { desc = "Prev hunk" })
 		end
 
 		require("gitsigns").setup({
 			on_attach = on_attach,
-            signs = {
-                add = { text = "│" },
-                change = { text = "│" },
-                delete = { text = "󰍵" },
-                topdelete = { text = "‾" },
-                changedelete = { text = "~" },
-                untracked = { text = "│" },
-            },
+			signs = {
+				add = { text = "│" },
+				change = { text = "│" },
+				delete = { text = "󰍵" },
+				topdelete = { text = "‾" },
+				changedelete = { text = "~" },
+				untracked = { text = "│" },
+			},
 		})
 	end,
 }
