@@ -7,7 +7,7 @@ return {
         "prettier",
         "eslint-lsp",
         "stylua",
-        "nixpkgs-fmt",
+        "actionlint",
     },
     config = function()
         local mason = require("mason")

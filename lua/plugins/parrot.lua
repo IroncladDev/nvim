@@ -26,11 +26,14 @@ return {
 				openai = {
 					api_key = os.getenv("OPENAI_API_KEY"),
 				},
+        pplx = {
+          api_key = os.getenv("PERPLEXITY_API_KEY"),
+        },
 			},
-            system_prompt = {
-                chat = prompt,
-                command = prompt
-            },
+			system_prompt = {
+				chat = prompt,
+				command = prompt,
+			},
 			toggle_target = "tabnew",
 			chat_user_prefix = "user:",
 			llm_prefix = "assistant:",
