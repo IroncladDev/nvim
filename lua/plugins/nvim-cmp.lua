@@ -5,6 +5,7 @@ return {
 		"hrsh7th/cmp-buffer",
 		"hrsh7th/cmp-path",
 		"hrsh7th/cmp-cmdline",
+        "dcampos/cmp-snippy",
 	},
 	config = function()
 		local cmp = require("cmp")
@@ -27,8 +28,8 @@ return {
 			}),
 
 			sources = cmp.config.sources({
-				{ name = "snippy" },
 				{ name = "nvim_lsp" },
+				{ name = "snippy" },
 				{ name = "path" },
 				{ name = "buffer" },
 			}),
