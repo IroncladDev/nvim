@@ -29,6 +29,13 @@ require("lazy").setup({
 		"nvim-tree/nvim-web-devicons",
 		"mbbill/undotree",
 		"jason0x43/vim-wildgitignore",
+		"arkav/lualine-lsp-progress",
+		{
+			"rcarriga/nvim-notify",
+			opts = {
+				render = "compact",
+			},
+		},
 		{
 			"rust-lang/rust.vim",
 			ft = "rust",

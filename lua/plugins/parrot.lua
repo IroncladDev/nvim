@@ -26,9 +26,9 @@ return {
 				openai = {
 					api_key = os.getenv("OPENAI_API_KEY"),
 				},
-        pplx = {
-          api_key = os.getenv("PERPLEXITY_API_KEY"),
-        },
+				pplx = {
+					api_key = os.getenv("PERPLEXITY_API_KEY"),
+				},
 			},
 			system_prompt = {
 				chat = prompt,

@@ -4,7 +4,7 @@ return {
 		require("snippy").setup({
 			mappings = {
 				is = {
-                    ["<C-e>"] = "expand",
+                    ["<C-i>"] = "expand",
 					["<C-j>"] = "expand_or_advance",
 					["<C-k>"] = "previous",
 				},

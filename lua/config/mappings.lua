@@ -145,3 +145,6 @@ vim.keymap.set({ "n", "v", "i", "t" }, "<C-f>", "<cmd> ToggleTerm<CR>", { desc =
 
 -- Folding
 vim.keymap.set("n", "<leader>fb", "$zf%", { desc = "Fold block" })
+
+-- Reload snippets
+vim.keymap.set("n", "<leader>sr", "<cmd> SnippyReload<CR>", { desc = "Reload snippets" })
