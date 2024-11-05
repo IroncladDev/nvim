@@ -5,14 +5,18 @@ return {
 		"hrsh7th/cmp-buffer",
 		"hrsh7th/cmp-path",
 		"hrsh7th/cmp-cmdline",
-        "dcampos/cmp-snippy",
+		"dcampos/cmp-snippy",
+		-- "brenoprata10/nvim-highlight-colors",
 	},
+	-- formatting = {
+	-- 	format = require("nvim-highlight-colors").format,
+	-- },
 	config = function()
 		local cmp = require("cmp")
 
 		cmp.setup({
 			completion = {
-				completeopt = "menu,menuone,preview,noselect",
+				completeopt = "menu,menuone,noselect",
 			},
 			mapping = cmp.mapping.preset.insert({
 				["<C-k>"] = cmp.mapping.select_prev_item(),

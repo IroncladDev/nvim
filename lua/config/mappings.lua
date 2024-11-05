@@ -148,3 +148,8 @@ vim.keymap.set("n", "<leader>fb", "$zf%", { desc = "Fold block" })
 
 -- Reload snippets
 vim.keymap.set("n", "<leader>sr", "<cmd> SnippyReload<CR>", { desc = "Reload snippets" })
+
+-- Color converter
+vim.keymap.set("n", "<leader>cc", function()
+	require("color-converter").cycle()
+end, { desc = "Color converter" })

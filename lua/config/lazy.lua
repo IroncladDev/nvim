@@ -27,13 +27,13 @@ require("lazy").setup({
 		-- import your plugins
 		{ import = "plugins" },
 		"nvim-tree/nvim-web-devicons",
-		"mbbill/undotree",
 		"jason0x43/vim-wildgitignore",
 		"arkav/lualine-lsp-progress",
 		{
 			"rcarriga/nvim-notify",
 			opts = {
 				render = "compact",
+        background_colour = "#0000"
 			},
 		},
 		{

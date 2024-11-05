@@ -138,9 +138,9 @@ return {
 				capabilities = capabilities,
 				settings = {
 					["rust-analyzer"] = {
-						checkOnSave = {
-							command = "clippy",
-						},
+						-- checkOnSave = {
+						-- 	command = "clippy",
+						-- },
 						cargo = {
 							loadOutDirsFromCheck = true,
 						},
