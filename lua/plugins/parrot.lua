@@ -20,6 +20,7 @@ return {
 	"frankroeder/parrot.nvim",
 	dependencies = { "nvim-lua/plenary.nvim", "j-hui/fidget.nvim" },
 	cond = os.getenv("OPENAI_API_KEY") ~= nil and os.getenv("PERPLEXITY_API_KEY") ~= nil,
+  event = "VeryLazy",
 	config = function()
 		require("parrot").setup({
 			providers = {

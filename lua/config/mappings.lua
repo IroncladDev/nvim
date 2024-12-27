@@ -4,20 +4,6 @@ vim.g.mapleader = " "
 -- Nvimtree
 vim.keymap.set("n", "<leader>b", "<cmd> NvimTreeToggle <CR>")
 
--- Undotree
-vim.keymap.set("n", "<leader>u", "<cmd> UndotreeToggle <CR>")
-
--- Easy vimgrep search
-vim.keymap.set("n", "<leader>gp", function()
-	local pattern = vim.fn.input("Search Regex: ")
-	local filetype = vim.fn.input("File Glob: ")
-
-	local cmd = string.format("vimgrep /%s/gj **/%s", pattern, filetype)
-
-	vim.cmd(cmd)
-	vim.cmd("copen")
-end, { desc = "Vimgrep for pattern & Glob" })
-
 -- Telescope
 vim.keymap.set("n", "<leader>ff", "<cmd> Telescope find_files <CR>", { desc = "Find files" })
 vim.keymap.set("n", "<leader>fd", "<cmd> Telescope diagnostics <CR>", { desc = "Show diagnostics" })
@@ -26,7 +12,6 @@ vim.keymap.set("n", "<leader>fr", "<cmd> Telescope oldfiles <CR>", { desc = "Fin
 vim.keymap.set("n", "<leader>gc", "<cmd> Telescope git_commits <CR>", { desc = "Git commits" })
 vim.keymap.set("n", "<leader>gt", "<cmd> Telescope git_status <CR>", { desc = "Git status" })
 vim.keymap.set("n", "<leader>tc", "<cmd> Telescope commands <CR>", { desc = "Show commands" })
-vim.keymap.set("n", "<leader>tn", "<cmd> Telescope notify <CR>", { desc = "Show notifications" })
 
 -- Lspconfig
 vim.keymap.set("n", "<leader>lf", vim.diagnostic.open_float, { desc = "Floating Diagnostics" })
@@ -146,11 +131,3 @@ vim.keymap.set({ "n", "v", "i", "t" }, "<C-f>", "<cmd> ToggleTerm<CR>", { desc =
 
 -- Folding
 vim.keymap.set("n", "<leader>fb", "$zf%", { desc = "Fold block" })
-
--- Reload snippets
-vim.keymap.set("n", "<leader>sr", "<cmd> SnippyReload<CR>", { desc = "Reload snippets" })
-
--- Color converter
-vim.keymap.set("n", "<leader>cc", function()
-	require("color-converter").cycle()
-end, { desc = "Color converter" })

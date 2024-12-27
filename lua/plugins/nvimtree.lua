@@ -1,5 +1,6 @@
 return {
 	"nvim-tree/nvim-tree.lua",
+  event = "VeryLazy",
 	config = function()
 		local WIDTH_RATIO = 0.5
 

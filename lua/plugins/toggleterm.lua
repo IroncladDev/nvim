@@ -1,5 +1,6 @@
 return {
 	"akinsho/toggleterm.nvim",
+  event = "VeryLazy",
 	config = function()
 		local theme = require("catppuccin.palettes").get_palette("macchiato")
 

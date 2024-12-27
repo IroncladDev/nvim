@@ -9,7 +9,7 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
 			{ out, "WarningMsg" },
 			{ "\nPress any key to exit..." },
 		}, true, {})
-		vim.fn.getchar()
+    vim.fn.getchar()
 		os.exit(1)
 	end
 end
@@ -27,27 +27,16 @@ require("lazy").setup({
 		-- import your plugins
 		{ import = "plugins" },
 		"nvim-tree/nvim-web-devicons",
-		"jason0x43/vim-wildgitignore",
-		"arkav/lualine-lsp-progress",
-		{
-			"rcarriga/nvim-notify",
-			opts = {
-				render = "compact",
-        background_colour = "#0000"
-			},
-		},
-		{
-			"rust-lang/rust.vim",
-			ft = "rust",
-		},
+		{ "numToStr/Comment.nvim", event = "VeryLazy" },
+		{ "nmac427/guess-indent.nvim", event = "VeryLazy" },
+		"rust-lang/rust.vim",
 		{
 			"simrat39/rust-tools.nvim",
-			ft = "rust",
 			dependencies = "neovim/nvim-lspconfig",
 		},
 		{
 			"Pocco81/auto-save.nvim",
-			event = { "InsertLeave", "TextChanged" },
+			event = { "InsertLeave", "TextChanged", "VeryLazy" },
 			config = function()
 				require("auto-save").setup({})
 			end,

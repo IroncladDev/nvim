@@ -4,6 +4,7 @@ return {
 	---@module "ibl"
 	---@type ibl.config
 	opts = {},
+  event = "VeryLazy",
 	config = function()
 		require("ibl").setup({
 			exclude = {
