@@ -18,25 +18,33 @@ You are the most capable model. You can do it.
 
 return {
 	"frankroeder/parrot.nvim",
-	dependencies = { "ibhagwan/fzf-lua", "nvim-lua/plenary.nvim", "rcarriga/nvim-notify" },
+	dependencies = { "nvim-lua/plenary.nvim", "j-hui/fidget.nvim" },
 	cond = os.getenv("OPENAI_API_KEY") ~= nil and os.getenv("PERPLEXITY_API_KEY") ~= nil,
 	config = function()
 		require("parrot").setup({
 			providers = {
 				openai = {
 					api_key = os.getenv("OPENAI_API_KEY"),
+					topic_prompt = prompt,
+
+					chat = { max_tokens = 500 },
+					command = { max_tokens = 500 },
 				},
 				pplx = {
 					api_key = os.getenv("PERPLEXITY_API_KEY"),
+					topic_prompt = prompt,
+
+					chat = { max_tokens = 500 },
+					command = { max_tokens = 500 },
 				},
 			},
 			system_prompt = {
 				chat = prompt,
 				command = prompt,
 			},
-			toggle_target = "tabnew",
-			chat_user_prefix = "user:",
-			llm_prefix = "assistant:",
+			toggle_target = "popup",
+			chat_user_prefix = "master:",
+			llm_prefix = "slave:",
 			chat_confirm_delete = false,
 			enable_spinner = false,
 		})

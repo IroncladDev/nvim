@@ -5,7 +5,7 @@ return {
 			render = "virtual",
 			virtual_symbol = "●",
 			virtual_symbol_position = "eol",
-      enable_tailwind = true
+			enable_tailwind = true,
 		})
 	end,
 }
