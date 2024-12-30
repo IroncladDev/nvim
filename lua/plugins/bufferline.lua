@@ -1,7 +1,6 @@
 return {
 	"akinsho/bufferline.nvim",
 	after = "catppuccin",
-  event = "VeryLazy",
 	config = function()
 		require("bufferline").setup({
 			options = {
