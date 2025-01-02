@@ -6,7 +6,6 @@ return {
 		require("catppuccin").setup({
 			flavour = "mocha",
 			term_colors = true,
-			-- transparent_background = true,
 			integrations = {
 				cmp = true,
 				treesitter = true,

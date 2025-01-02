@@ -32,9 +32,9 @@ return {
 			map("n", "<leader>rh", gitsigns.reset_hunk, { desc = "Reset hunk" })
 			map("n", "<leader>ph", gitsigns.preview_hunk, { desc = "Preview hunk" })
 			map("n", "<leader>pi", gitsigns.preview_hunk_inline, { desc = "Preview hunk inline" })
-            map("n", "<leader>gb", gitsigns.blame_line, { desc = "Blame line" })
-            map("n", "<leader>hn", gitsigns.next_hunk, { desc = "Next hunk" })
-            map("n", "<leader>hp", gitsigns.prev_hunk, { desc = "Prev hunk" })
+      map("n", "<leader>gb", gitsigns.blame_line, { desc = "Blame line" })
+      map("n", "<leader>hn", gitsigns.next_hunk, { desc = "Next hunk" })
+      map("n", "<leader>hp", gitsigns.prev_hunk, { desc = "Prev hunk" })
 		end
 
 		require("gitsigns").setup({

@@ -43,7 +43,7 @@ return {
 				chat = prompt,
 				command = prompt,
 			},
-			toggle_target = "popup",
+			toggle_target = "tabnew",
 			chat_user_prefix = "master:",
 			llm_prefix = "slave:",
 			chat_confirm_delete = false,
