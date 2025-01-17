@@ -27,8 +27,8 @@ require("lazy").setup({
 		-- import your plugins
 		{ import = "plugins" },
 		"nvim-tree/nvim-web-devicons",
+    "vidocqh/auto-indent.nvim",
 		{ "numToStr/Comment.nvim", event = "VeryLazy" },
-		{ "nmac427/guess-indent.nvim", event = "VeryLazy" },
 		"rust-lang/rust.vim",
 		{
 			"simrat39/rust-tools.nvim",

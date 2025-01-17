@@ -131,3 +131,6 @@ vim.keymap.set({ "n", "v", "i", "t" }, "<C-f>", "<cmd> ToggleTerm<CR>", { desc =
 
 -- Folding
 vim.keymap.set("n", "<leader>fb", "$zf%", { desc = "Fold block" })
+
+-- Showkeys
+vim.keymap.set("n", "<leader>ks", "<cmd> ShowkeysToggle<CR>", { desc = "Show keys" })
