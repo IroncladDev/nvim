@@ -1,4 +1,4 @@
-# My Revamped Neovim Config
+# My Neovim Config
 
 *Refuses to elaborate*
 

@@ -8,7 +8,7 @@ return {
 				clear_suggestion = "<C-c>",
 				accept_word = "<C-w>",
 			},
-			disable_inline_completion = true,
+			disable_inline_completion = false,
       color = {
         suggestion_color = "#756293",
         cterm = 244

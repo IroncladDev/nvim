@@ -86,34 +86,6 @@ return {
 			capabilities = capabilities,
 		})
 
-		lspconfig.tailwindcss.setup({
-			on_attach = on_attach,
-			capabilities = capabilities,
-			settings = {
-				tailwindCSS = {
-					experimental = {
-						classRegex = {
-							'"([^"]*)"',
-							{ "@apply\\s+(.*)$", "[^\\w]([\\w-]+)" },
-						},
-					},
-					validate = true,
-				},
-			},
-			filetypes = {
-				"typescriptreact",
-				"html",
-				"rust",
-				"css",
-			},
-			root_dir = lspconfig.util.root_pattern("tailwind.config.js", "tailwind.config.ts"),
-			init_options = {
-				userLanguages = {
-					rust = "html",
-				},
-			},
-		})
-
 		lspconfig.lua_ls.setup({
 			on_attach = on_attach,
 			capabilities = capabilities,
@@ -126,24 +98,27 @@ return {
 			},
 		})
 
-		rust_tools.setup({
-			server = {
-				on_attach = on_attach,
-				capabilities = capabilities,
-				settings = {
-					["rust-analyzer"] = {
-						-- checkOnSave = {
-						-- 	command = "clippy",
-						-- },
-						cargo = {
-							loadOutDirsFromCheck = true,
-						},
-						diagnostics = {
-							enable = true,
-						},
-					},
-				},
-			},
-		})
+		-- rust_tools.setup({
+		-- 	server = {
+		-- 		on_attach = on_attach,
+		-- 		capabilities = capabilities,
+		-- 		settings = {
+		-- 			["rust-analyzer"] = {
+		-- 				-- checkOnSave = {
+		-- 				-- 	command = "clippy",
+		-- 				-- },
+		-- 				cargo = {
+		-- 					loadOutDirsFromCheck = true,
+		-- 				},
+		-- 				diagnostics = {
+		-- 					enable = true,
+		-- 				},
+		-- 			},
+		-- 		},
+		-- 		flags = {
+		-- 			allow_incremental_sync = true,
+		-- 		},
+		-- 	},
+		-- })
 	end,
 }

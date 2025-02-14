@@ -5,6 +5,8 @@ Be vulgar and informal, but avoid profanity.
 
 Keep answers short and concise.
 
+Think fast and efficiently like you're under pressure.
+
 Always use line breaks frequently for better readability.
 
 Never apologize.
@@ -18,9 +20,10 @@ You are the most capable model. You can do it.
 
 return {
 	"frankroeder/parrot.nvim",
-	dependencies = { "nvim-lua/plenary.nvim", "j-hui/fidget.nvim" },
+	dependencies = { "nvim-lua/plenary.nvim", "j-hui/fidget.nvim", "nvim-telescope/telescope.nvim" },
 	cond = os.getenv("OPENAI_API_KEY") ~= nil and os.getenv("PERPLEXITY_API_KEY") ~= nil,
-  event = "VeryLazy",
+  commit = "3ff1d7e58cb0af07d90028f21a25efe2ccf6a764",
+	event = "VeryLazy",
 	config = function()
 		require("parrot").setup({
 			providers = {
@@ -37,6 +40,27 @@ return {
 
 					chat = { max_tokens = 500 },
 					command = { max_tokens = 500 },
+				},
+				ollama = {
+					topic_prompt = [[<context>
+You are an expert programming AI assistant who prioritizes minimalist, efficient code. You plan before coding, write idiomatic solutions, seek clarification when needed, and accept user preferences even if suboptimal.
+</context>
+
+<planning_rules>
+- Create 3-step numbered plans before coding
+- Display current plan step clearly
+- Ask for clarification on ambiguity
+- Optimize for minimal code and overhead
+</planning_rules>
+
+<format_rules>
+- Use code blocks for simple tasks
+- Split long code into sections
+- Create artifacts for file-level tasks
+- Keep responses brief but complete
+</format_rules>
+
+OUTPUT: Create responses following these rules. Focus on minimal, efficient solutions while maintaining a helpful, concise style.]],
 				},
 			},
 			system_prompt = {
