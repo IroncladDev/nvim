@@ -5,7 +5,6 @@ return {
 	dependencies = { "hrsh7th/cmp-nvim-lsp" },
 	config = function()
 		local lspconfig = require("lspconfig")
-		local rust_tools = require("rust-tools")
 		local cmp_nvim_lsp = require("cmp_nvim_lsp")
 
 		local keymap = vim.keymap
@@ -82,6 +81,19 @@ return {
 		})
 
 		lspconfig.jsonls.setup({
+			on_attach = on_attach,
+			capabilities = capabilities,
+		})
+
+		lspconfig.astro.setup({
+			init_options = {
+				typescript = {
+					tsdk = vim.fn.resolve(
+						vim.fn.stdpath("data")
+							.. "/mason/packages/typescript-language-server/node_modules/typescript/lib"
+					),
+				},
+			},
 			on_attach = on_attach,
 			capabilities = capabilities,
 		})

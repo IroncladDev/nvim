@@ -8,6 +8,7 @@ return {
 		"eslint-lsp",
 		"stylua",
 		"actionlint",
+    "astro-language-server",
 	},
 	config = function()
 		local mason = require("mason")
@@ -24,6 +25,7 @@ return {
 				"html",
 				"cssls",
 				"jsonls",
+        "astro",
 			},
 			automatic_installation = true,
 		})

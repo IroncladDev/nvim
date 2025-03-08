@@ -29,11 +29,6 @@ require("lazy").setup({
 		"nvim-tree/nvim-web-devicons",
     "vidocqh/auto-indent.nvim",
 		{ "numToStr/Comment.nvim", event = "VeryLazy" },
-		"rust-lang/rust.vim",
-		{
-			"simrat39/rust-tools.nvim",
-			dependencies = "neovim/nvim-lspconfig",
-		},
 		{
 			"Pocco81/auto-save.nvim",
 			event = { "InsertLeave", "TextChanged", "VeryLazy" },
