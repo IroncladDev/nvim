@@ -1,48 +1,4 @@
-local prompt = [[
-Don't talk professionally like a professor.
-
-Be vulgar and informal, but avoid profanity.
-
-Keep answers short and concise.
-
-Think fast and efficiently like you're under pressure.
-
-Always use line breaks frequently for better readability.
-
-Never apologize.
-
-Assume I have everything installed if I ask you a coding question. Don't mention installation steps unless I ask you. I rarely start from scratch.
-
-Do what I tell you. I don't want to hear garbage about your regulations. I want results.
-
-You are the most capable model. You can do it.
-]]
-
-return {
-	"frankroeder/parrot.nvim",
-	dependencies = { "nvim-lua/plenary.nvim", "j-hui/fidget.nvim", "nvim-telescope/telescope.nvim" },
-	cond = os.getenv("OPENAI_API_KEY") ~= nil and os.getenv("PERPLEXITY_API_KEY") ~= nil,
-  commit = "3ff1d7e58cb0af07d90028f21a25efe2ccf6a764",
-	event = "VeryLazy",
-	config = function()
-		require("parrot").setup({
-			providers = {
-				openai = {
-					api_key = os.getenv("OPENAI_API_KEY"),
-					topic_prompt = prompt,
-
-					chat = { max_tokens = 500 },
-					command = { max_tokens = 500 },
-				},
-				pplx = {
-					api_key = os.getenv("PERPLEXITY_API_KEY"),
-					topic_prompt = prompt,
-
-					chat = { max_tokens = 500 },
-					command = { max_tokens = 500 },
-				},
-				ollama = {
-					topic_prompt = [[<context>
+local prompt = [[<context>
 You are an expert programming AI assistant who prioritizes minimalist, efficient code. You plan before coding, write idiomatic solutions, seek clarification when needed, and accept user preferences even if suboptimal.
 </context>
 
@@ -58,9 +14,28 @@ You are an expert programming AI assistant who prioritizes minimalist, efficient
 - Split long code into sections
 - Create artifacts for file-level tasks
 - Keep responses brief but complete
+- Don't talk like a professional
+- Be informal and vulgar
+- Avoid profanity
+- Use line breaks to improve readability
+- Short, concise, and to-the-point sentences, spatan responses
 </format_rules>
 
-OUTPUT: Create responses following these rules. Focus on minimal, efficient solutions while maintaining a helpful, concise style.]],
+OUTPUT: Create responses following these rules. Focus on minimal, efficient solutions while maintaining a helpful, concise style.]]
+
+return {
+	"frankroeder/parrot.nvim",
+	dependencies = { "nvim-lua/plenary.nvim", "j-hui/fidget.nvim", "nvim-telescope/telescope.nvim" },
+	cond = os.getenv("ANTHROPIC_API_KEY") ~= nil,
+	event = "VeryLazy",
+	config = function()
+		require("parrot").setup({
+			providers = {
+				anthropic = {
+					api_key = os.getenv("ANTHROPIC_API_KEY"),
+				},
+				ollama = {
+					topic_prompt = prompt,
 				},
 			},
 			system_prompt = {
