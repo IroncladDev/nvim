@@ -1,0 +1,26 @@
+yabai -m signal --add event=dock_did_restart action="sudo yabai --load-sa"
+sudo yabai --load-sa
+
+yabai -m config layout bsp
+yabai -m config window_placement second_child
+
+yabai -m config top_padding 16
+yabai -m config bottom_padding 16
+yabai -m config left_padding 16
+yabai -m config right_padding 16
+yabai -m config window_gap 16
+
+yabai -m space 1 --label q
+yabai -m space 2 --label w
+yabai -m space 3 --label e
+yabai -m space 4 --label r
+yabai -m space 5 --label t
+
+yabai -m space 1 --display 1
+yabai -m space 2 --display 1
+yabai -m space 3 --display 1
+yabai -m space 4 --display 2
+yabai -m space 5 --display 2
+
+yabai -m rule --add app="^System Settings$" manage=off
+yabai -m rule --add app="^Karabiner-Elements$" manage=off

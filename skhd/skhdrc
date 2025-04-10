@@ -1,0 +1,75 @@
+:: default
+:: win @
+
+# Application shortcuts
+
+ctrl - 0x29 : open -a "kitty"
+ctrl - 0x2F : open -a "Brave Browser Nightly"
+
+# activating layers
+ctrl - g ; win
+
+# exiting layers
+win < escape; default
+
+# -- stopping/starting/restarting Yabai / SKHD --
+win < y : yabai --restart-service; skhd -k "escape"
+win < s : skhd --restart-service; skhd -k "escape"
+win < shift - y : yabai --stop-service; skhd -k "escape"
+win < shift - s : skhd --stop-service; skhd -k "escape"
+
+# Create and destroy spaces
+win < c : yabai -m space --create; skhd -k "escape"
+win < x : yabai -m space --destroy; skhd -k "escape"
+
+# Move between spaces
+win < h : yabai -m window --focus west; skhd -k "escape"
+win < j : yabai -m window --focus south; skhd -k "escape"
+win < k : yabai -m window --focus north; skhd -k "escape"
+win < l : yabai -m window --focus east; skhd -k "escape"
+
+# swap windows
+win < ctrl - j : yabai -m window --swap south; skhd -k "escape"
+win < ctrl - k : yabai -m window --swap north; skhd -k "escape"
+win < ctrl - h : yabai -m window --swap west; skhd -k "escape"
+win < ctrl - l : yabai -m window --swap east; skhd -k "escape"
+
+
+# move window and split
+win < shift - j : yabai -m window --warp south; skhd -k "escape"
+win < shift - k : yabai -m window --warp north; skhd -k "escape"
+win < shift - h : yabai -m window --warp west; skhd -k "escape"
+win < shift - l : yabai -m window --warp east; skhd -k "escape"
+
+# move window to space
+win < ctrl - q : yabai -m window --space q; skhd -k "escape"
+win < ctrl - w : yabai -m window --space w; skhd -k "escape"
+win < ctrl - e : yabai -m window --space e; skhd -k "escape"
+win < ctrl - r : yabai -m window --space r; skhd -k "escape"
+win < ctrl - t : yabai -m window --space t; skhd -k "escape"
+win < ctrl - n : yabai -m window --space next || yabai -m window --space first; skhd -k "escape"
+win < ctrl - p : yabai -m window --space prev || yabai -m window --space last; skhd -k "escape"
+
+# focus space
+win < q : yabai -m space --focus q; skhd -k "escape"
+win < w : yabai -m space --focus w; skhd -k "escape"
+win < e : yabai -m space --focus e; skhd -k "escape"
+win < r : yabai -m space --focus r; skhd -k "escape"
+win < t : yabai -m space --focus t; skhd -k "escape"
+win < n : yabai -m space --focus next || yabai -m space --focus first; skhd -k "escape"
+win < p : yabai -m space --focus prev || yabai -m space --focus last; skhd -k "escape"
+
+# move space to display
+win < shift - d : yabai -m space --display next || yabai -m space --display first; skhd -k "escape"
+
+# toggle window maximized
+win < m : yabai -m window --toggle zoom-fullscreen; skhd -k "escape"
+
+# toggle window float
+win < f : yabai -m window --toggle float --grid 4:4:1:1:2:2; skhd -k "escape"
+
+# toggle display focus
+win < d: yabai -m display --focus next || yabai -m display --focus first; skhd -k "escape"
+
+# balance out tree of windows (resize to occupy same area)
+win < b : yabai -m space --balance; skhd -k "escape"
