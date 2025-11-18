@@ -1,0 +1,10 @@
+[Unit]
+Description=Run auto-remind-join every minute
+
+[Timer]
+OnBootSec=30s
+OnUnitActiveSec=60s
+Unit=auto-remind-join.service
+
+[Install]
+WantedBy=timers.target

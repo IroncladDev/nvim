@@ -46,10 +46,14 @@ local on_attach = function(client, bufnr)
 
     -- Diagnostics
     opts.desc = "Prev diagnostic"
-    keymap.set("n", "dp", "<cmd>lua vim.diagnostic.goto_prev()<CR>", opts)
+    keymap.set("n", "dp", function()
+        vim.diagnostic.jump({ count = -1 })
+    end, opts)
 
     opts.desc = "Next diagnostic"
-    keymap.set("n", "dn", "<cmd>lua vim.diagnostic.goto_next()<CR>", opts)
+    keymap.set("n", "dn", function()
+        vim.diagnostic.jump({ count = 1 })
+    end, opts)
 
     opts.desc = "Floating diagnostic"
     keymap.set("n", "<leader>df", vim.diagnostic.open_float, opts)

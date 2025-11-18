@@ -49,6 +49,10 @@ vim.g.mapleader = " "
 -- Nvimtree
 keymap.set("n", "<leader>b", "<cmd> Oil <CR>")
 
+-- Buffers
+keymap.set("n", "<tab>", "<cmd> bn <CR>", { desc = "Next buffer" })
+keymap.set("n", "<S-tab>", "<cmd> bp <CR>", { desc = "Previous buffer" })
+
 -- Telescope
 -- keymap.set("n", "<leader>ff", "<cmd> Telescope find_files <CR>", { desc = "Find files" })
 keymap.set("n", "<leader>fg", "<cmd> Telescope git_status <CR>", { desc = "Git status" })
@@ -108,3 +112,24 @@ keymap.set("n", "<leader>w" .. left, "<C-w>h", { desc = "Move left" })
 keymap.set("n", "<leader>w" .. down, "<C-w>j", { desc = "Move down" })
 keymap.set("n", "<leader>w" .. up, "<C-w>k", { desc = "Move up" })
 keymap.set("n", "<leader>w" .. right, "<C-w>l", { desc = "Move right" })
+
+-- Reload theme
+vim.keymap.set("n", "<leader>os", function()
+    for k in pairs(package.loaded) do
+        if k:match("^osmium") then
+            package.loaded[k] = nil
+        end
+    end
+    require("osmium").setup({
+        integrations = {
+            telescope = false,
+            gitsigns = false,
+            blink_cmp = false,
+        },
+        transparent_bg = false,
+    })
+    vim.cmd.colorscheme("osmium")
+end, { desc = "Reload osmium" })
+
+-- Inspection
+keymap.set("n", "<leader>i", "<cmd> Inspect <CR>")

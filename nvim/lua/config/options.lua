@@ -31,7 +31,6 @@ vim.opt.termguicolors = true
 
 -- Line numbers
 vim.wo.number = true
-vim.wo.relativenumber = true
 
 -- Tmux-like splits
 vim.o.equalalways = false
@@ -41,3 +40,5 @@ vim.opt.signcolumn = "yes"
 
 -- Gitsigns git refresh rate
 vim.opt.updatetime = 250
+
+vim.opt.cursorline = true
