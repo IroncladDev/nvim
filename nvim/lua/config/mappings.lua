@@ -52,6 +52,7 @@ keymap.set("n", "<leader>b", "<cmd> Oil <CR>")
 -- Buffers
 keymap.set("n", "<tab>", "<cmd> bn <CR>", { desc = "Next buffer" })
 keymap.set("n", "<S-tab>", "<cmd> bp <CR>", { desc = "Previous buffer" })
+keymap.set("n", "<leader>x", "<cmd> bd <CR>", { desc = "Delete buffer" })
 
 -- Telescope
 -- keymap.set("n", "<leader>ff", "<cmd> Telescope find_files <CR>", { desc = "Find files" })

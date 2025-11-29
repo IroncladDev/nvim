@@ -9,7 +9,7 @@ local on_attach = function(client, bufnr)
 
     vim.defer_fn(function()
         if client.server_capabilities.inlayHintProvider then
-            vim.lsp.inlay_hint.enable(true, { bufnr })
+            vim.lsp.inlay_hint.enable(false, { bufnr })
         end
     end, 100)
 
