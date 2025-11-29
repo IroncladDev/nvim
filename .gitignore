@@ -22,3 +22,4 @@ brave-flags.conf
 chromium-flags.conf
 user-dirs.dirs
 user-dirs.locale
+hypr/shaders
