@@ -28,6 +28,7 @@
       "7": "7",
       "8": "8",
       "9": "9",
+      "10": "0",
       "active": "󱓻"
     },
     "persistent-workspaces": {
@@ -98,9 +99,11 @@
   "bluetooth": {
     "format": "",
     "format-disabled": "󰂲",
-    "format-connected": "",
+    "format-off": "󰂲",
+    "format-connected": "󰂱",
+    "format-no-controller": "",
     "tooltip-format": "Devices connected: {num_connections}",
-    "on-click": "blueberry"
+    "on-click": "omarchy-launch-bluetooth"
   },
   "pulseaudio": {
     "format": "{icon}",
