@@ -6,6 +6,7 @@
   s-back-word (b)
 
   screenshot (s s)
+  screenshot-file (s f)
   screenshot-window (s w)
   record-region (r r)
   record-region-audio (r a)
@@ -20,6 +21,7 @@
   s-back-word (macro A-left)
 
   screenshot (macro prnt)
+  screenshot-file (macro C-prnt)
   screenshot-window (macro S-prnt)
   record-region (macro A-prnt)
   record-region-audio (macro A-S-prnt)
