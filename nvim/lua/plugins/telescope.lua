@@ -12,7 +12,8 @@ return {
                         ["<A-BS>"] = function()
                             vim.api.nvim_input("<C-w>")
                         end
-                    }
+                    },
+                    v = {}
                 },
                 vimgrep_arguments = {
                     "rg",

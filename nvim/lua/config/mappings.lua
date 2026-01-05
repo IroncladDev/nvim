@@ -8,32 +8,10 @@ local right = "o"
 vim.keymap.set({ 'i', 't', 'c' }, '<M-BS>', '<C-w>', { noremap = true })
 
 -- Move up and down through wrapped lines in normal/terminal/visual mode
-keymap.set(
-    { "n", "v" },
-    down,
-    'v:count || mode(1)[0:1] == "no" ? "j" : "gj"',
-    { expr = true, noremap = true }
-)
-keymap.set(
-    { "n", "v" },
-    up,
-    'v:count || mode(1)[0:1] == "no" ? "k" : "gk"',
-    { expr = true, noremap = true }
-)
-
--- Move to the next/previous line if at the first/last column
-keymap.set(
-    { "n", "v" },
-    left,
-    'v:count == 0 && col(".") == 1 ? "k$" : "h"',
-    { expr = true, noremap = true }
-)
-keymap.set(
-    { "n", "v" },
-    right,
-    'v:count == 0 && col(".") == col("$") - 1 ? "j0" : "l"',
-    { expr = true, noremap = true }
-)
+keymap.set({ "n", "v" }, down, '<DOWN>', { noremap = true })
+keymap.set({ "n", "v" }, up, '<UP>', { noremap = true })
+keymap.set({ "n", "v" }, left, '<LEFT>', { noremap = true })
+keymap.set({ "n", "v" }, right, '<RIGHT>', { noremap = true })
 
 keymap.set({ 'n', 'v' }, 'k', 'n', { noremap = true })
 keymap.set({ 'n', 'v' }, "j", 'e', { noremap = true })
@@ -53,22 +31,32 @@ keymap.set("n", "<leader>b", "<cmd> Oil <CR>")
 keymap.set("n", "<tab>", "<cmd> bn <CR>", { desc = "Next buffer" })
 keymap.set("n", "<S-tab>", "<cmd> bp <CR>", { desc = "Previous buffer" })
 keymap.set("n", "<leader>x", "<cmd> bd <CR>", { desc = "Delete buffer" })
+keymap.set("n", "<leader>ox", function()
+    local bufs = vim.tbl_filter(function(b)
+        return vim.api.nvim_buf_is_loaded(b) and b ~= vim.api.nvim_get_current_buf()
+    end, vim.api.nvim_list_bufs())
+    for _, b in ipairs(bufs) do
+        vim.api.nvim_buf_delete(b, {})
+    end
+end, { desc = "Close other buffers" })
 
 -- Telescope
--- keymap.set("n", "<leader>ff", "<cmd> Telescope find_files <CR>", { desc = "Find files" })
-keymap.set("n", "<leader>fg", "<cmd> Telescope git_status <CR>", { desc = "Git status" })
 keymap.set("n", "<leader>fd", "<cmd> Telescope diagnostics <CR>", { desc = "Show diagnostics" })
 keymap.set("n", "<leader>fw", "<cmd> Telescope live_grep <CR>", { desc = "Live Grep" })
-keymap.set("n", "<leader>fr", "<cmd>Telescope lsp_references<CR>", { desc = "Show LSP references" })
 keymap.set("n", "<leader>fb", "<cmd>Telescope buffers<CR>", { desc = "Show buffers" })
 
 -- FFF
 keymap.set("n", "<leader>ff", function()
     require("fff").find_files()
 end, { desc = "Find files" })
--- keymap.set("n", "<leader>fg", function()
---     require("fff").find_in_git_root()
--- end, { desc = "Git status" })
+keymap.set("n", "<leader>fg", function()
+    require("fff").find_in_git_root()
+end, { desc = "Git status" })
+keymap.set("n", "<leader>fr", function()
+    vim.cmd("FFFScan")
+    vim.cmd("FFFRefreshGit")
+end, { desc = "Git status" })
+
 
 keymap.set("n", "<leader>X", "<cmd> bd! <CR>", { desc = "Force Close Buffer" })
 
