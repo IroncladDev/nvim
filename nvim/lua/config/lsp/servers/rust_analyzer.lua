@@ -10,7 +10,8 @@ vim.lsp.config['rust_analyzer'] = {
     capabilities = utils.capabilities,
     settings = {
         ['rust-analyzer'] = {
-            checkOnSave = {
+            checkOnSave = true,
+            check = {
                 command = "clippy",
             },
             inlayHints = {
