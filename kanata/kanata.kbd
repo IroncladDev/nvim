@@ -7,8 +7,8 @@
 
 (defvar
   tap-time 175
-  hold-time 150
-  combo-time 25
+  hold-time 125
+  combo-time 20
 )
 
 (include combos.kbd)
@@ -31,4 +31,3 @@
   @cdr z    x    c    d    v    k    h    ,    .    /    _
   _    _    _              @spl           _    _    _
 )
-

@@ -52,4 +52,7 @@
     (ret k) 8 $combo-time first-release ()
     (ret l) 9 $combo-time first-release ()
     (ret ;) 0 $combo-time first-release ()
+
+    (f g) lalt $combo-time all-released ()
+    (v b) lsft $combo-time all-released ()
 )
