@@ -5,21 +5,21 @@ local down = "e"
 local up = "i"
 local right = "o"
 
-vim.keymap.set({ 'i', 't', 'c' }, '<M-BS>', '<C-w>', { noremap = true })
+vim.keymap.set({ "i", "t", "c" }, "<M-BS>", "<C-w>", { noremap = true })
 
 -- Move up and down through wrapped lines in normal/terminal/visual mode
-keymap.set({ "n", "v" }, down, '<DOWN>', { noremap = true })
-keymap.set({ "n", "v" }, up, '<UP>', { noremap = true })
-keymap.set({ "n", "v" }, left, '<LEFT>', { noremap = true })
-keymap.set({ "n", "v" }, right, '<RIGHT>', { noremap = true })
+keymap.set({ "n", "v" }, down, "<DOWN>", { noremap = true })
+keymap.set({ "n", "v" }, up, "<UP>", { noremap = true })
+keymap.set({ "n", "v" }, left, "<LEFT>", { noremap = true })
+keymap.set({ "n", "v" }, right, "<RIGHT>", { noremap = true })
 
-keymap.set({ 'n', 'v' }, 'k', 'n', { noremap = true })
-keymap.set({ 'n', 'v' }, "j", 'e', { noremap = true })
-keymap.set({ 'n', 'v' }, 'h', 'o', { noremap = true })
-keymap.set({ 'n', 'v' }, 'l', 'i', { noremap = true })
+keymap.set({ "n", "v" }, "k", "n", { noremap = true })
+keymap.set({ "n", "v" }, "j", "e", { noremap = true })
+keymap.set({ "n", "v" }, "h", "o", { noremap = true })
+keymap.set({ "n", "v" }, "l", "i", { noremap = true })
 
-keymap.set({ 'n', 'v' }, "K", "N", { noremap = true })
-keymap.set({ 'n', 'v' }, 'H', 'O', { noremap = true })
+keymap.set({ "n", "v" }, "K", "N", { noremap = true })
+keymap.set({ "n", "v" }, "H", "O", { noremap = true })
 
 -- Leader
 vim.g.mapleader = " "
@@ -32,31 +32,13 @@ keymap.set("n", "<tab>", "<cmd> bn <CR>", { desc = "Next buffer" })
 keymap.set("n", "<S-tab>", "<cmd> bp <CR>", { desc = "Previous buffer" })
 keymap.set("n", "<leader>x", "<cmd> bd <CR>", { desc = "Delete buffer" })
 keymap.set("n", "<leader>ox", function()
-    local bufs = vim.tbl_filter(function(b)
-        return vim.api.nvim_buf_is_loaded(b) and b ~= vim.api.nvim_get_current_buf()
-    end, vim.api.nvim_list_bufs())
-    for _, b in ipairs(bufs) do
-        vim.api.nvim_buf_delete(b, {})
-    end
+	local bufs = vim.tbl_filter(function(b)
+		return vim.api.nvim_buf_is_loaded(b) and b ~= vim.api.nvim_get_current_buf()
+	end, vim.api.nvim_list_bufs())
+	for _, b in ipairs(bufs) do
+		vim.api.nvim_buf_delete(b, {})
+	end
 end, { desc = "Close other buffers" })
-
--- Telescope
-keymap.set("n", "<leader>fd", "<cmd> Telescope diagnostics <CR>", { desc = "Show diagnostics" })
-keymap.set("n", "<leader>fw", "<cmd> Telescope live_grep <CR>", { desc = "Live Grep" })
-keymap.set("n", "<leader>fb", "<cmd>Telescope buffers<CR>", { desc = "Show buffers" })
-
--- FFF
-keymap.set("n", "<leader>ff", function()
-    require("fff").find_files()
-end, { desc = "Find files" })
-keymap.set("n", "<leader>fg", function()
-    require("fff").find_in_git_root()
-end, { desc = "Git status" })
-keymap.set("n", "<leader>fr", function()
-    vim.cmd("FFFScan")
-    vim.cmd("FFFRefreshGit")
-end, { desc = "Git status" })
-
 
 keymap.set("n", "<leader>X", "<cmd> bd! <CR>", { desc = "Force Close Buffer" })
 
@@ -78,13 +60,13 @@ keymap.set("x", "p", 'p:let @+=@0<CR>:let @"=@0<CR>', { desc = "Don't copy repla
 
 -- Toggle comment in both modes
 keymap.set("n", "<leader>/", function()
-    require("Comment.api").toggle.linewise.current()
+	require("Comment.api").toggle.linewise.current()
 end, { desc = "Toggle comment" })
 keymap.set(
-    "v",
-    "<leader>/",
-    "<ESC><cmd>lua require('Comment.api').toggle.linewise(vim.fn.visualmode())<CR>",
-    { desc = "Toggle comment" }
+	"v",
+	"<leader>/",
+	"<ESC><cmd>lua require('Comment.api').toggle.linewise(vim.fn.visualmode())<CR>",
+	{ desc = "Toggle comment" }
 )
 
 -- Terminal Mode
@@ -104,21 +86,27 @@ keymap.set("n", "<leader>w" .. right, "<C-w>l", { desc = "Move right" })
 
 -- Reload theme
 vim.keymap.set("n", "<leader>os", function()
-    for k in pairs(package.loaded) do
-        if k:match("^osmium") then
-            package.loaded[k] = nil
-        end
-    end
-    require("osmium").setup({
-        integrations = {
-            telescope = false,
-            gitsigns = false,
-            blink_cmp = false,
-        },
-        transparent_bg = false,
-    })
-    vim.cmd.colorscheme("osmium")
+	for k in pairs(package.loaded) do
+		if k:match("^osmium") then
+			package.loaded[k] = nil
+		end
+	end
+	require("osmium").setup({
+		integrations = {
+			telescope = false,
+			gitsigns = false,
+			blink_cmp = false,
+		},
+		transparent_bg = false,
+	})
+	vim.cmd.colorscheme("osmium")
 end, { desc = "Reload osmium" })
 
 -- Inspection
 keymap.set("n", "<leader>i", "<cmd> Inspect <CR>")
+
+-- Glance
+vim.keymap.set("n", "gd", "<CMD>Glance definitions<CR>")
+vim.keymap.set("n", "gr", "<CMD>Glance references<CR>")
+vim.keymap.set("n", "gi", "<CMD>Glance implementations<CR>")
+vim.keymap.set("n", "<leader>g", "<CMD>Glance resume<CR>")

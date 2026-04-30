@@ -1,16 +1,14 @@
+-- nvim-ts-autotag - Auto close and rename HTML/JSX tags
 return {
-  "windwp/nvim-ts-autotag",
-  ft = {
-    "javascript",
-    "javascriptreact",
-    "typescript",
-    "typescriptreact",
-    "astro",
-    "html",
-    "xml",
-  },
-  event = "VeryLazy",
-  config = function()
-    require("nvim-ts-autotag").setup()
-  end,
+	"windwp/nvim-ts-autotag",
+	ft = {
+		"javascript",
+		"javascriptreact",
+		"typescript",
+		"typescriptreact",
+		"astro",
+		"html",
+		"xml",
+	},
+	opts = {},
 }

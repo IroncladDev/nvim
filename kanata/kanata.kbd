@@ -8,7 +8,7 @@
 (defvar
   tap-time 175
   hold-time 125
-  combo-time 20
+  combo-time 25
 )
 
 (include combos.kbd)

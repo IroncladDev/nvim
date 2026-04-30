@@ -10,6 +10,18 @@ vim.lsp.config['ts_ls'] = {
     init_options = {
         hostInfo = 'neovim',
     },
+    settings = {
+        typescript = {
+            preferences = {
+                includeCompletionsForImportStatements = true,
+            }
+        },
+        javascript = {
+            preferences = {
+                includeCompletionsForImportStatements = true,
+            }
+        },
+    },
     on_attach = utils.on_attach,
     capabilities = utils.capabilities,
 }

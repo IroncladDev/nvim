@@ -5,7 +5,8 @@ return {
     },
     ensure_installed = {
         "stylua",
-        "prettier"
+        "prettier",
+        "prettierd",
     },
     config = function()
         local mason = require("mason")
