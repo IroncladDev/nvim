@@ -42,3 +42,4 @@ vim.opt.signcolumn = "yes"
 vim.opt.updatetime = 250
 
 vim.opt.cursorline = true
+vim.bo.cindent = true
