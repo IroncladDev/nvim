@@ -1,13 +1,12 @@
 return {
 	"dmtrKovalenko/fff.nvim",
-    -- version = "v0.5.2",
 	build = function()
 		require("fff.download").download_or_build_binary()
 	end,
 	opts = {
 		debug = {
-			enabled = true,
-			show_scores = true,
+			enabled = false,
+			show_scores = false,
 		},
 		git = {
 			status_text_color = true,

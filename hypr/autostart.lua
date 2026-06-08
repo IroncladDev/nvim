@@ -1,0 +1,7 @@
+hl.on("hyprland.start", function()
+	hl.dispatch(hl.dsp.exec_cmd("signal-desktop", { workspace = "2" }))
+	hl.dispatch(hl.dsp.exec_cmd("slack", { workspace = "2" }))
+	hl.dispatch(hl.dsp.exec_cmd('omarchy-launch-webapp "https://discord.com/channels/@me"', { workspace = "2" }))
+	hl.dispatch(hl.dsp.exec_cmd('omarchy-launch-webapp "https://mail.google.com"', { workspace = "2" }))
+	hl.dsp.focus({ workspace = "1" })
+end)

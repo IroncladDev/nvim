@@ -1,6 +1,12 @@
 local javascript_fts = { "json", "javascript", "typescript", "typescriptreact", "javascriptreact" }
 local xml_fts = { "html", "xml", "svg" }
 
+vim.filetype.add({
+    extension = {
+        mdx = "markdown",
+    }
+})
+
 vim.treesitter.language.register("tsx", javascript_fts)
 vim.treesitter.language.register("html", xml_fts)
 vim.treesitter.language.register("css", "css")

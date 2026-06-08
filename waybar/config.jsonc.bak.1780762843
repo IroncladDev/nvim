@@ -4,9 +4,8 @@
   "position": "top",
   "spacing": 0,
   "height": 26,
-  "width": 0,
   "modules-left": ["custom/omarchy", "hyprland/workspaces"],
-  "modules-center": ["clock#horizontal", "clock#vertical", "custom/weather", "custom/update", "custom/voxtype", "custom/screenrecording-indicator", "custom/idle-indicator", "custom/notification-silencing-indicator"],
+  "modules-center": ["clock", "custom/weather", "custom/update", "custom/voxtype", "custom/screenrecording-indicator", "custom/idle-indicator", "custom/notification-silencing-indicator"],
   "modules-right": [
     "group/tray-expander",
     "bluetooth",
@@ -43,7 +42,6 @@
   "custom/omarchy": {
     "format": "<span font='omarchy'>\ue900</span>",
     "on-click": "omarchy-menu",
-    "on-click-right": "xdg-terminal-exec",
     "tooltip-format": "Omarchy Menu\n\nSuper + Alt + Space"
   },
   "custom/update": {
@@ -52,26 +50,19 @@
     "on-click": "omarchy-launch-floating-terminal-with-presentation omarchy-update",
     "tooltip-format": "Omarchy update available",
     "signal": 7,
-    "interval": 21600
+    "interval": 3600
   },
 
   "cpu": {
     "interval": 5,
     "format": "󰍛",
-    "on-click": "omarchy-launch-or-focus-tui btop",
-    "on-click-right": "alacritty"
+    "on-click": "$TERMINAL -e btop"
   },
-  "clock#horizontal": {
+  "clock": {
     "format": "{:L%A %H:%M}",
     "format-alt": "{:L%d %B W%V %Y}",
     "tooltip": false,
-    "on-click-right": "omarchy-launch-floating-terminal-with-presentation omarchy-tz-select"
-  },
-  "clock#vertical": {
-    "format": "{:%H\n  —\n%M}",
-    "format-alt": "{:L%d %B W%V %Y}",
-    "tooltip": false,
-    "on-click-right": "omarchy-launch-floating-terminal-with-presentation omarchy-tz-select"
+    "on-click-right": "omarchy-cmd-tzupdate"
   },
   "custom/weather": {
     "exec": "$OMARCHY_PATH/default/waybar/weather.sh",
@@ -115,8 +106,8 @@
   },
   "bluetooth": {
     "format": "",
-    "format-off": "󰂲",
     "format-disabled": "󰂲",
+    "format-off": "󰂲",
     "format-connected": "󰂱",
     "format-no-controller": "",
     "tooltip-format": "Devices connected: {num_connections}",
@@ -124,7 +115,7 @@
   },
   "pulseaudio": {
     "format": "{icon}",
-    "on-click": "omarchy-launch-audio",
+    "on-click": "$TERMINAL --class=Wiremix -e wiremix",
     "on-click-right": "pamixer -t",
     "tooltip-format": "Playing at {volume}%",
     "scroll-step": 5,
@@ -141,45 +132,16 @@
       "transition-duration": 600,
       "children-class": "tray-group-item"
     },
-    "modules": ["group/expand-icons", "tray"]
+    "modules": ["custom/expand-icon", "tray"]
   },
-  "group/expand-icons": {
-    "orientation": "inherit",
-    "modules": ["custom/expand-icon#horizontal", "custom/expand-icon#vertical"]
-  },
-  "custom/expand-icon#horizontal": {
-    "format": "",
-    "tooltip": false,
-    "on-scroll-up": "",
-    "on-scroll-down": "",
-    "on-scroll-left": "",
-    "on-scroll-right": ""
-  },
-  "custom/expand-icon#vertical": {
-    "format": "",
-    "rotate": 270,
-    "tooltip": false,
-    "on-scroll-up": "",
-    "on-scroll-down": "",
-    "on-scroll-left": "",
-    "on-scroll-right": ""
+  "custom/expand-icon": {
+    "format": " ",
+    "tooltip": false
   },
   "custom/screenrecording-indicator": {
     "on-click": "omarchy-capture-screenrecording",
     "exec": "$OMARCHY_PATH/default/waybar/indicators/screen-recording.sh",
     "signal": 8,
-    "return-type": "json"
-  },
-  "custom/idle-indicator": {
-    "on-click": "omarchy-toggle-idle",
-    "exec": "$OMARCHY_PATH/default/waybar/indicators/idle.sh",
-    "signal": 9,
-    "return-type": "json"
-  },
-  "custom/notification-silencing-indicator": {
-    "on-click": "omarchy-toggle-notification-silencing",
-    "exec": "$OMARCHY_PATH/default/waybar/indicators/notification-silencing.sh",
-    "signal": 10,
     "return-type": "json"
   },
   "custom/voxtype": {
@@ -195,8 +157,20 @@
     "on-click-right": "omarchy-voxtype-config",
     "on-click": "omarchy-voxtype-model"
   },
+  "custom/idle-indicator": {
+    "on-click": "omarchy-toggle-idle",
+    "exec": "$OMARCHY_PATH/default/waybar/indicators/idle.sh",
+    "signal": 9,
+    "return-type": "json"
+  },
+  "custom/notification-silencing-indicator": {
+    "on-click": "omarchy-toggle-notification-silencing",
+    "exec": "$OMARCHY_PATH/default/waybar/indicators/notification-silencing.sh",
+    "signal": 10,
+    "return-type": "json"
+  },
   "tray": {
     "icon-size": 12,
-    "spacing": 17
+    "spacing": 12
   }
 }
