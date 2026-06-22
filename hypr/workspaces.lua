@@ -3,7 +3,6 @@ hl.workspace_rule({
 	monitor = "DP-2",
 	default = true,
 	persistent = true,
-    on_created_empty = "kitty",
 })
 hl.workspace_rule({
 	workspace = "2",
@@ -15,7 +14,6 @@ hl.workspace_rule({
 	monitor = "eDP-1",
 	persistent = true,
 	default = true,
-    on_created_empty = "omarchy-launch-browser",
 })
 hl.workspace_rule({
 	workspace = "4",

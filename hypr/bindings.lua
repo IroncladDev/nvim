@@ -87,6 +87,11 @@ hl.bind("ALT + l", hl.dsp.focus({ workspace = "2" }))
 hl.bind("ALT + u", hl.dsp.focus({ workspace = "3" }))
 hl.bind("ALT + y", hl.dsp.focus({ workspace = "4" }))
 hl.bind("ALT + semicolon", hl.dsp.focus({ workspace = "5" }))
+hl.bind("ALT + 1", hl.dsp.focus({ workspace = "1" }))
+hl.bind("ALT + 2", hl.dsp.focus({ workspace = "2" }))
+hl.bind("ALT + 3", hl.dsp.focus({ workspace = "3" }))
+hl.bind("ALT + 4", hl.dsp.focus({ workspace = "4" }))
+hl.bind("ALT + 5", hl.dsp.focus({ workspace = "5" }))
 
 -- Moving windows submap
 hl.bind("ALT + m", hl.dsp.submap("movewindow"))

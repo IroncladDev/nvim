@@ -9,6 +9,7 @@
 !systemd/
 !fastfetch/
 !walker/
+!jj/
 
 # Unwanted files
 kdenlive-layoutsrc

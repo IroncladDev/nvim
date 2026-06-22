@@ -1,0 +1,131 @@
+# default-command = "log"
+[ui]
+bookmark-list-sort-keys = ['committer-date-']
+always-allow-large-revsets = true
+default-command = ["log", "--limit", "15"]
+
+[colors]
+author = "magenta"
+bookmarks = "blue"
+change_id = "bright blue"
+commit_id = "yellow"
+"working_copy author" = "magenta"
+"working_copy bookmarks" = "blue"
+"working_copy change_id" = {fg = "bright blue", underline = true}
+
+[user]
+email = "conner@ironclad.sh"
+name = "IroncladDev"
+
+[signing]
+behavior = "own"
+backend = "ssh"
+key = "~/.ssh/id_ed25519.pub"
+
+[git]
+sign-on-push = true
+
+[aliases]
+P = [
+    "git",
+    "push",
+]
+t = [
+    "bookmark",
+    "track",
+    "--remote=origin",
+]
+f = [
+    "git",
+    "fetch",
+]
+l = [
+    "log",
+    "-r",
+    "ancestors(reachable(@, mutable()), 2)",
+]
+ll = [
+    "log",
+    "-r",
+    "ancestors(reachable(@ | bookmarks(), mutable()), 2)",
+]
+lll = ["ll", "--template", "medium"]
+llll = ["log", "--template", "builtin_log_detailed"]
+lost = [
+    "log",
+    "-r",
+    "mine() & mutable()",
+]
+m = [
+    "resolve",
+    "--tool",
+    "mergiraf",
+]
+n = [
+    "next",
+    "--edit",
+]
+p = [
+    "prev",
+    "--edit",
+]
+clean = [
+    "util", "exec", "--", "bash", "-c", """
+    set -euo pipefail
+    jj diff --summary | grep .d.ts | awk '$1=="A"{print $2}' | xargs rm
+    """, ""
+]
+clean-others = [
+    "abandon",
+    "-r",
+    "mutable() & ~::mine()"
+]
+
+revsets.short-prefixes = "latest(trunk().. & mine(), 20)"
+
+[revset-aliases]
+g = "heads(bookmarks() & ::@)"
+h = "trunk()"
+"immutable_heads()" = 'trunk() | untracked_remote_bookmarks(remote = "origin")'
+j = "@"
+jj = "@-"
+jjj = "@--"
+jjjj = "@---"
+jjjjj = "@----"
+jjjjjj = "@-----"
+"downstream(x,y)" = "(x::y) & y"
+branches = "downstream(bases | trunk(), bookmarks()) & mine()"
+branchesandheads = "branches | (heads(bases::) & mine())"
+curbranch = "latest(branches::@- & branches)"
+nextbranch = "roots(@:: & branchesandheads)"
+children = "@::"
+
+[template-aliases]
+medium = '''
+if(root,
+  format_root_commit(self),
+  label(if(current_working_copy, "working_copy"),
+    separate(" ",
+      pad_end(14, separate(" ",
+        format_short_change_id_with_change_offset(self),
+        format_short_commit_id(commit_id)
+      )),
+      format_timestamp(commit_timestamp(self)),
+      format_short_signature(author) ++ ": " ++ truncate_end(80, description.first_line()),
+      bookmarks,
+      tags,
+      working_copies,
+      if(empty, label("empty", "(empty)")),
+    ) ++ "\n",
+  )
+)'''
+"format_short_signature(signature)" = """
+if(signature.name(),
+    label("username", truncate_end(4, signature.name().lower())),
+  email_placeholder)"""
+
+"format_timestamp(timestamp)" = "timestamp.ago()"
+
+[templates]
+git_push_bookmark = '"ironclad/jj-" ++ change_id.short(5)'
+
