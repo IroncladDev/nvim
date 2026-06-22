@@ -8,10 +8,10 @@ local right = "o"
 vim.keymap.set({ "i", "t", "c" }, "<M-BS>", "<C-w>", { noremap = true })
 
 -- Move up and down through wrapped lines in normal/terminal/visual mode
-keymap.set({ "n", "v" }, down, "<DOWN>", { noremap = true })
-keymap.set({ "n", "v" }, up, "<UP>", { noremap = true })
-keymap.set({ "n", "v" }, left, "<LEFT>", { noremap = true })
-keymap.set({ "n", "v" }, right, "<RIGHT>", { noremap = true })
+keymap.set({ "n", "v" }, down, "<DOWN>", { noremap = true, nowait = true })
+keymap.set({ "n", "v" }, up, "<UP>", { noremap = true, nowait = true })
+keymap.set({ "n", "v" }, left, "<LEFT>", { noremap = true, nowait = true })
+keymap.set({ "n", "v" }, right, "<RIGHT>", { noremap = true, nowait = true })
 
 keymap.set({ "n", "v" }, "k", "n", { noremap = true })
 keymap.set({ "n", "v" }, "j", "e", { noremap = true })
