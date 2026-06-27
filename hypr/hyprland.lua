@@ -7,6 +7,7 @@ package.path = os.getenv("HOME")
 
 require("default.hypr.helpers")
 require("default.hypr.autostart")
+require("default.hypr.bindings.clipboard")
 require("default.hypr.bindings.media")
 
 -- Screensaver fullscreen window rule

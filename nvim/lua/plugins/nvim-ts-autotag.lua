@@ -9,6 +9,7 @@ return {
 		"astro",
 		"html",
 		"xml",
+        "svelte",
 	},
 	opts = {},
 }

@@ -7,6 +7,7 @@ return {
         "stylua",
         "prettier",
         "prettierd",
+        "nixfmt",
     },
     config = function()
         local mason = require("mason")
@@ -22,6 +23,8 @@ return {
                 "ts_ls",
                 "lua_ls",
                 "rust_analyzer",
+                "svelte",
+                "golangci_lint_ls",
             },
             automatic_installation = true,
         })

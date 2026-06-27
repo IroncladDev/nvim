@@ -1,27 +1,3 @@
--- Copy / Paste
-hl.bind(
-	"SUPER + C",
-	hl.dsp.send_shortcut({
-		mods = "CTRL",
-		key = "Insert",
-	})
-)
-hl.bind(
-	"SUPER + V",
-	hl.dsp.send_shortcut({
-		mods = "SHIFT",
-		key = "Insert",
-	})
-)
-hl.bind(
-	"SUPER + X",
-	hl.dsp.send_shortcut({
-		mods = "CTRL",
-		key = "X",
-	})
-)
-hl.bind("ALT + V", hl.dsp.exec_cmd("omarchy-launch-walker -m clipboard"))
-
 -- Menu
 hl.bind("SUPER + SPACE", hl.dsp.exec_cmd("walker"))
 hl.bind("SUPER + ALT + SPACE", hl.dsp.exec_cmd("omarchy-menu"))
