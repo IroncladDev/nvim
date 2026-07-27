@@ -1,6 +1,7 @@
-# A TOML linter such as https://taplo.tamasfe.dev/ can use this schema to validate your config.
+# A TOML linter such as https://github.com/tombi-toml/tombi can use this schema to validate your config.
 # If you encounter any issues, please make an issue at https://github.com/yazi-rs/schemas.
-"$schema" = "https://yazi-rs.github.io/schemas/keymap.json"
+
+#:schema https://yazi-rs.github.io/schemas/keymap.json
 
 [mgr]
 
@@ -59,7 +60,6 @@ keymap = [
 	{ on = "<Tab>", run = "spot", desc = "Spot hovered file" },
 
 	# Operation
-	{ on = "o",         run = "open",                        desc = "Open selected files" },
 	{ on = "O",         run = "open --interactive",          desc = "Open selected files interactively" },
 	{ on = "<Enter>",   run = "open",                        desc = "Open selected files" },
 	{ on = "<S-Enter>", run = "open --interactive",          desc = "Open selected files interactively" },
@@ -105,23 +105,22 @@ keymap = [
 	# Find
 	{ on = "/", run = "find --smart",            desc = "Find next file" },
 	{ on = "?", run = "find --previous --smart", desc = "Find previous file" },
-	{ on = "n", run = "find_arrow",              desc = "Next found" },
 	{ on = "N", run = "find_arrow --previous",   desc = "Previous found" },
 
 	# Sorting
-	{ on = [ ",", "m" ], run = [ "sort mtime --reverse=no", "linemode mtime" ], desc = "Sort by modified time" },
-	{ on = [ ",", "M" ], run = [ "sort mtime --reverse", "linemode mtime" ],    desc = "Sort by modified time (reverse)" },
-	{ on = [ ",", "b" ], run = [ "sort btime --reverse=no", "linemode btime" ], desc = "Sort by birth time" },
-	{ on = [ ",", "B" ], run = [ "sort btime --reverse", "linemode btime" ],    desc = "Sort by birth time (reverse)" },
-	{ on = [ ",", "e" ], run = "sort extension --reverse=no",                   desc = "Sort by extension" },
-	{ on = [ ",", "E" ], run = "sort extension --reverse",                      desc = "Sort by extension (reverse)" },
-	{ on = [ ",", "a" ], run = "sort alphabetical --reverse=no",                desc = "Sort alphabetically" },
-	{ on = [ ",", "A" ], run = "sort alphabetical --reverse",                   desc = "Sort alphabetically (reverse)" },
-	{ on = [ ",", "n" ], run = "sort natural --reverse=no",                     desc = "Sort naturally" },
-	{ on = [ ",", "N" ], run = "sort natural --reverse",                        desc = "Sort naturally (reverse)" },
-	{ on = [ ",", "s" ], run = [ "sort size --reverse=no", "linemode size" ],   desc = "Sort by size" },
-	{ on = [ ",", "S" ], run = [ "sort size --reverse", "linemode size" ],      desc = "Sort by size (reverse)" },
-	{ on = [ ",", "r" ], run = "sort random --reverse=no",                      desc = "Sort randomly" },
+	{ on = [ ",", "m" ], run = [ "sort mtime --reverse=no", "linemode mtime" ],  desc = "Sort by modified time" },
+	{ on = [ ",", "M" ], run = [ "sort mtime --reverse=yes", "linemode mtime" ], desc = "Sort by modified time (reverse)" },
+	{ on = [ ",", "b" ], run = [ "sort btime --reverse=no", "linemode btime" ],  desc = "Sort by birth time" },
+	{ on = [ ",", "B" ], run = [ "sort btime --reverse=yes", "linemode btime" ], desc = "Sort by birth time (reverse)" },
+	{ on = [ ",", "e" ], run = "sort extension --reverse=no",                    desc = "Sort by extension" },
+	{ on = [ ",", "E" ], run = "sort extension --reverse=yes",                   desc = "Sort by extension (reverse)" },
+	{ on = [ ",", "a" ], run = "sort alphabetical --reverse=no",                 desc = "Sort alphabetically" },
+	{ on = [ ",", "A" ], run = "sort alphabetical --reverse=yes",                desc = "Sort alphabetically (reverse)" },
+	{ on = [ ",", "n" ], run = "sort natural --reverse=no",                      desc = "Sort naturally" },
+	{ on = [ ",", "N" ], run = "sort natural --reverse=yes",                     desc = "Sort naturally (reverse)" },
+	{ on = [ ",", "s" ], run = [ "sort size --reverse=no", "linemode size" ],    desc = "Sort by size" },
+	{ on = [ ",", "S" ], run = [ "sort size --reverse=yes", "linemode size" ],   desc = "Sort by size (reverse)" },
+	{ on = [ ",", "r" ], run = "sort random --reverse=no",                       desc = "Sort randomly" },
 
 	# Goto
 	{ on = [ "g", "h" ],       run = "cd ~",             desc = "Go home" },
@@ -131,7 +130,8 @@ keymap = [
 	{ on = [ "g", "f" ],       run = "follow",           desc = "Follow hovered symlink" },
 
 	# Tabs
-	{ on = "t", run = "tab_create --current", desc = "Create a new tab with CWD" },
+	{ on = [ "t", "t" ], run = "tab_create --current",     desc = "Create a new tab in CWD" },
+	{ on = [ "t", "r" ], run = "tab_rename --interactive", desc = "Rename current tab" },
 
 	{ on = "1", run = "tab_switch 0", desc = "Switch to first tab" },
 	{ on = "2", run = "tab_switch 1", desc = "Switch to second tab" },

@@ -1,15 +1,3 @@
--- Load user modules from ~/.config and Omarchy defaults from $OMARCHY_PATH.
-package.path = os.getenv("HOME")
-	.. "/.config/?.lua;"
-	.. (os.getenv("OMARCHY_PATH") or (os.getenv("HOME") .. "/.local/share/omarchy"))
-	.. "/?.lua;"
-	.. package.path
-
-require("default.hypr.helpers")
-require("default.hypr.autostart")
-require("default.hypr.bindings.clipboard")
-require("default.hypr.bindings.media")
-
 -- Screensaver fullscreen window rule
 hl.window_rule({
 	match = {
@@ -53,7 +41,7 @@ hl.config({
 	},
 })
 
-require("hypr.monitors")
-require("hypr.workspaces")
-require("hypr.bindings")
-require("hypr.autostart")
+require("monitors")
+require("workspaces")
+require("bindings")
+require("autostart")
