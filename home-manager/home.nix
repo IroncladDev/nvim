@@ -36,6 +36,7 @@
             lua
             bun
             keychain
+            neovim
         ]
         # Linux-only
         ++ lib.optionals pkgs.stdenv.isLinux [
