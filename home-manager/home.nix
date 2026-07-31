@@ -35,6 +35,7 @@
             openssh
             lua
             bun
+            keychain
         ]
         # Linux-only
         ++ lib.optionals pkgs.stdenv.isLinux [
