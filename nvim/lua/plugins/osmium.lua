@@ -1,6 +1,5 @@
 return {
-	dir = "~/Desktop/osmium",
-	-- "IroncladDev/osmium",
+	"IroncladDev/osmium",
 	config = function()
 		require("osmium").setup({
 			integrations = {
