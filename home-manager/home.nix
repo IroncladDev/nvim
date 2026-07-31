@@ -37,6 +37,7 @@
             bun
             keychain
             neovim
+            git
         ]
         # Linux-only
         ++ lib.optionals pkgs.stdenv.isLinux [
