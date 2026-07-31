@@ -1,10 +1,17 @@
-{ config, pkgs, ... }:
+{
+    config,
+    pkgs,
+    lib,
+    ...
+}:
 
 {
     # Home Manager needs a bit of information about you and the paths it should
     # manage.
-    home.username = "ironcladdev";
-    home.homeDirectory = "/home/ironcladdev";
+    home = {
+        username = "ironcladdev";
+        homeDirectory = "/${if pkgs.stdenv.isLinux then "home" else "Users"}/${config.home.username}";
+    };
 
     # This value determines the Home Manager release that your configuration is
     # compatible with. This helps avoid breakage when a new Home Manager release
@@ -15,36 +22,29 @@
     # release notes.
     home.stateVersion = "26.05"; # Please read the comment before changing.
 
-    # The home.packages option allows you to install Nix packages into your
-    # environment.
-    home.packages = with pkgs; [
-        ###### Applications ######
-        #kitty
-        #brave
-
-        ###### Processes/Programs ######
-        kanata-with-cmd
-
-        ###### CLI Tools ######
-        ripgrep
-        magic-wormhole
-        jujutsu
-        zoxide
-
-        ###### TUIs ######
-        yazi
-        wiremix
-        impala
-        bluetui
-
-        ###### Misc ######
-        nerd-fonts.jetbrains-mono
-        openssh
-
-        ###### Languages ######
-        lua
-        bun
-    ];
+    home.packages =
+        with pkgs;
+        # Shared
+        [
+            ripgrep
+            magic-wormhole
+            jujutsu
+            fastfetch
+            zoxide
+            yazi
+            openssh
+            lua
+            bun
+        ]
+        # Linux-only
+        ++ lib.optionals pkgs.stdenv.isLinux [
+            kanata-with-cmd
+            wiremix
+            impala
+            bluetui
+        ]
+        # macOS-only
+        ++ lib.optionals pkgs.stdenv.isDarwin [ ];
 
     programs.direnv = {
         enable = true;

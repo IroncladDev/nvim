@@ -1,6 +1,7 @@
 hl.on("hyprland.start", function()
 	hl.dispatch(hl.dsp.exec_cmd("uwsm-app -- hypridle"))
 	hl.dispatch(hl.dsp.exec_cmd("uwsm-app -- mako"))
+	hl.dispatch(hl.dsp.exec_cmd("uwsm-app -- waybar"))
 	hl.dispatch(hl.dsp.exec_cmd("uwsm-app -- fcitx5 --disable notificationitem"))
 	hl.dispatch(hl.dsp.exec_cmd("swaybg -i ~/.config/wallpapers/wallpaper-ak.png -m fill"))
 

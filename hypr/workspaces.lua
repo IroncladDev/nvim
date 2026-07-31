@@ -1,12 +1,12 @@
 hl.workspace_rule({
 	workspace = "1",
-	monitor = "DP-2",
+	monitor = "DP-3",
 	default = true,
 	persistent = true,
 })
 hl.workspace_rule({
 	workspace = "2",
-	monitor = "DP-2",
+	monitor = "DP-3",
 	persistent = true,
 })
 hl.workspace_rule({
@@ -22,6 +22,6 @@ hl.workspace_rule({
 })
 hl.workspace_rule({
 	workspace = "5",
-	monitor = "DP-2",
+	monitor = "DP-3",
 	persistent = true,
 })
