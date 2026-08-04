@@ -54,7 +54,7 @@
             wireguard-go
         ];
 
-    launchd.agents.wireguard = {
+    launchd.daemons.wireguard = {
         enable = true;
         config = {
             ProgramArguments = [
