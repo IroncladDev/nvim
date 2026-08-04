@@ -39,6 +39,7 @@
             keychain
             neovim
             git
+            cloudflared
         ]
         # Linux-only
         ++ lib.optionals pkgs.stdenv.isLinux [
