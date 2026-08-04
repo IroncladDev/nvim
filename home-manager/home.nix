@@ -58,7 +58,7 @@
         enable = true;
         config = {
             ProgramArguments = [
-                "${pkgs.wireguard-tools}/bin/wg-quick"
+                "${config.home.homeDirectory}/.nix-profile/bin/wg-quick"
                 "up"
                 "${config.home.homeDirectory}/.config/wireguard/wg0.conf"
             ];
