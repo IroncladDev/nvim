@@ -63,7 +63,7 @@
                 "${config.home.homeDirectory}/.config/wireguard/wg0.conf"
             ];
             RunAtLoad = true;
-            KeepAlive = false; # set to true if you want it always on
+            KeepAlive = true;
         };
     };
 
