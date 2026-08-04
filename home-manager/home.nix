@@ -41,6 +41,7 @@
             git
             cloudflared
             btop
+            luaPackages.tree-sitter-cli
         ]
         # Linux-only
         ++ lib.optionals pkgs.stdenv.isLinux [
