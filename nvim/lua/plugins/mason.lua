@@ -17,14 +17,14 @@ return {
 
         mason_lspconfig.setup({
             ensure_installed = {
-                "astro",
+                -- "astro",
                 "html",
                 "cssls",
                 "ts_ls",
                 "lua_ls",
-                "rust_analyzer",
-                "svelte",
-                "golangci_lint_ls",
+                -- "rust_analyzer",
+                -- "svelte",
+                -- "golangci_lint_ls",
             },
             automatic_installation = true,
         })
