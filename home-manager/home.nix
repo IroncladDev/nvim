@@ -51,7 +51,10 @@
             slack
         ]
         # macOS-only
-        ++ lib.optionals pkgs.stdenv.isDarwin [ glab ];
+        ++ lib.optionals pkgs.stdenv.isDarwin [
+            glab
+            nodejs_26
+        ];
 
     programs.direnv = {
         enable = true;
