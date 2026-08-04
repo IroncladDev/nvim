@@ -6,6 +6,7 @@
 }:
 
 {
+    nixpkgs.config.allowUnfree = true;
     # Home Manager needs a bit of information about you and the paths it should
     # manage.
     home = {
@@ -45,9 +46,11 @@
             wiremix
             impala
             bluetui
+            slack
+            wireguard-tools
         ]
         # macOS-only
-        ++ lib.optionals pkgs.stdenv.isDarwin [ ];
+        ++ lib.optionals pkgs.stdenv.isDarwin [ wireguard-go ];
 
     programs.direnv = {
         enable = true;
