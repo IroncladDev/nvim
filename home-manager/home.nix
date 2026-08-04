@@ -58,6 +58,8 @@
         enable = true;
         config = {
             ProgramArguments = [
+                "/usr/bin/sudo"
+                "-n"
                 "${config.home.homeDirectory}/.nix-profile/bin/wg-quick"
                 "up"
                 "${config.home.homeDirectory}/.config/wireguard/wg0.conf"
