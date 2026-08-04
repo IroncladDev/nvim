@@ -6,9 +6,6 @@ vim.opt.shiftwidth = 4
 vim.opt.autoindent = true
 vim.opt.backspace = "indent,eol,start"
 
--- Prefer the system clipboard for yanks/deletes
-vim.g.clipboard = "osc52"
-
 -- Prevent vimgrep from looking through unwanted directories
 vim.opt.wildignore:append({
 	"*/node_modules/*",
