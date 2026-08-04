@@ -49,7 +49,23 @@
             slack
         ]
         # macOS-only
-        ++ lib.optionals pkgs.stdenv.isDarwin [ wireguard-tools ];
+        ++ lib.optionals pkgs.stdenv.isDarwin [
+            wireguard-tools
+            wireguard-go
+        ];
+
+    launchd.agents.wireguard = {
+        enable = true;
+        config = {
+            ProgramArguments = [
+                "${pkgs.wireguard-tools}/bin/wg-quick"
+                "up"
+                "${config.home.homeDirectory}/.config/wireguard/wg0.conf"
+            ];
+            RunAtLoad = true;
+            KeepAlive = false; # set to true if you want it always on
+        };
+    };
 
     programs.direnv = {
         enable = true;
