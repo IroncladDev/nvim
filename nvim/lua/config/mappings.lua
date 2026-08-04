@@ -51,9 +51,10 @@ keymap.set("i", "<C-" .. right .. ">", "<Right>", { desc = "Move right", noremap
 -- Navigate in Normal Mode
 keymap.set("n", "<Esc>", "<cmd> noh <CR>", { desc = "Clear highlights" })
 
--- Visual Navigation
+-- Visual
 keymap.set("v", "<", "<gv", { desc = "Indent line" })
 keymap.set("v", ">", ">gv", { desc = "Indent line" })
+keymap.set("v", "Y", '"+y', { desc = "Yank to system clipboard", noremap = true })
 
 -- Paste in terminal mode
 keymap.set("x", "p", 'p:let @+=@0<CR>:let @"=@0<CR>', { desc = "Don't copy replaced text", silent = true })
