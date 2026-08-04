@@ -42,6 +42,7 @@
             cloudflared
             btop
             luaPackages.tree-sitter-cli
+            gh
         ]
         # Linux-only
         ++ lib.optionals pkgs.stdenv.isLinux [
@@ -54,7 +55,10 @@
         # macOS-only
         ++ lib.optionals pkgs.stdenv.isDarwin [
             glab
-            nodejs_26
+            natscli
+            nest-cli
+            cloudmonkey
+            postgresql
         ];
 
     programs.direnv = {
