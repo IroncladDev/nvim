@@ -50,7 +50,6 @@
             wiremix
             impala
             bluetui
-            slack
         ]
         # macOS-only
         ++ lib.optionals pkgs.stdenv.isDarwin [
