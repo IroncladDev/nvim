@@ -26,7 +26,12 @@ key = "~/.ssh/id_ed25519.pub"
 sign-on-push = true
 
 [aliases]
-P = [
+sm = [
+    "bookmark",
+    "set",
+    "master"
+]
+p = [
     "git",
     "push",
 ]
@@ -39,66 +44,12 @@ f = [
     "git",
     "fetch",
 ]
-l = [
-    "log",
-    "-r",
-    "ancestors(reachable(@, mutable()), 2)",
-]
-ll = [
-    "log",
-    "-r",
-    "ancestors(reachable(@ | bookmarks(), mutable()), 2)",
-]
-lll = ["ll", "--template", "medium"]
-llll = ["log", "--template", "builtin_log_detailed"]
-lost = [
-    "log",
-    "-r",
-    "mine() & mutable()",
-]
-m = [
-    "resolve",
-    "--tool",
-    "mergiraf",
-]
-n = [
-    "next",
-    "--edit",
-]
-p = [
-    "prev",
-    "--edit",
-]
-clean = [
-    "util", "exec", "--", "bash", "-c", """
-    set -euo pipefail
-    jj diff --summary | grep .d.ts | awk '$1=="A"{print $2}' | xargs rm
-    """, ""
-]
-clean-others = [
-    "abandon",
-    "-r",
-    "mutable() & ~::mine()"
-]
 
 revsets.short-prefixes = "latest(trunk().. & mine(), 20)"
 
 [revset-aliases]
-g = "heads(bookmarks() & ::@)"
-h = "trunk()"
-"immutable_heads()" = 'trunk() | untracked_remote_bookmarks(remote = "origin")'
-j = "@"
-jj = "@-"
-jjj = "@--"
-jjjj = "@---"
-jjjjj = "@----"
-jjjjjj = "@-----"
-"downstream(x,y)" = "(x::y) & y"
-branches = "downstream(bases | trunk(), bookmarks()) & mine()"
-branchesandheads = "branches | (heads(bases::) & mine())"
 curbranch = "latest(branches::@- & branches)"
 nextbranch = "roots(@:: & branchesandheads)"
-children = "@::"
 
 [template-aliases]
 medium = '''
@@ -123,9 +74,7 @@ if(root,
 if(signature.name(),
     label("username", truncate_end(4, signature.name().lower())),
   email_placeholder)"""
-
 "format_timestamp(timestamp)" = "timestamp.ago()"
 
 [templates]
 git_push_bookmark = '"ironclad/jj-" ++ change_id.short(5)'
-
