@@ -47,10 +47,9 @@
             impala
             bluetui
             slack
-            wireguard-tools
         ]
         # macOS-only
-        ++ lib.optionals pkgs.stdenv.isDarwin [ wireguard-go ];
+        ++ lib.optionals pkgs.stdenv.isDarwin [ wireguard-tools ];
 
     programs.direnv = {
         enable = true;
