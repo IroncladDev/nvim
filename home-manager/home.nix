@@ -40,6 +40,7 @@
             neovim
             git
             cloudflared
+            btop
         ]
         # Linux-only
         ++ lib.optionals pkgs.stdenv.isLinux [
@@ -50,7 +51,7 @@
             slack
         ]
         # macOS-only
-        ++ lib.optionals pkgs.stdenv.isDarwin [ ];
+        ++ lib.optionals pkgs.stdenv.isDarwin [ glab ];
 
     programs.direnv = {
         enable = true;
