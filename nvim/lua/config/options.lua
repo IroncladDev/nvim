@@ -6,17 +6,17 @@ vim.opt.shiftwidth = 4
 vim.opt.autoindent = true
 vim.opt.backspace = "indent,eol,start"
 
--- Sync clipboard
-vim.opt.clipboard = "unnamedplus"
+-- Prefer the system clipboard for yanks/deletes
+vim.opt.clipboard = "osc52"
 
 -- Prevent vimgrep from looking through unwanted directories
 vim.opt.wildignore:append({
-  "*/node_modules/*",
-  "*/dist/*",
-  "*/target/*",
-  "*/.git/*",
-  "*/.next/*",
-  "*/build/*"
+	"*/node_modules/*",
+	"*/dist/*",
+	"*/target/*",
+	"*/.git/*",
+	"*/.next/*",
+	"*/build/*",
 })
 
 -- Inline diagnostics
@@ -31,6 +31,7 @@ vim.opt.termguicolors = true
 
 -- Line numbers
 vim.wo.number = true
+vim.wo.relativenumber = true
 
 -- Tmux-like splits
 vim.o.equalalways = false
