@@ -46,8 +46,8 @@
             kubectl
             pgcli
             docker
-            colima
             docker-compose
+            mprocs
         ]
         # Linux-only
         ++ lib.optionals pkgs.stdenv.isLinux [
@@ -64,7 +64,6 @@
             nest-cli
             cloudmonkey
             postgresql
-            colima
         ];
 
     programs.direnv = {
