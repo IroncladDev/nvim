@@ -58,6 +58,7 @@
             nest-cli
             cloudmonkey
             postgresql
+            wireguard-tools
         ];
 
     programs.direnv = {
