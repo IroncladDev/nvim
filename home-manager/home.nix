@@ -60,11 +60,29 @@
             nest-cli
             cloudmonkey
             postgresql
+            colima
+            docker
+            docker-compose
         ];
 
     programs.direnv = {
         enable = true;
         nix-direnv.enable = true;
+    };
+
+    launchd.agents.colima = {
+        enable = true;
+        config = {
+            Label = "com.user.colima";
+            ProgramArguments = [
+                "${pkgs.colima}/bin/colima"
+                "start"
+            ];
+            RunAtLoad = true;
+            KeepAlive = false;
+            StandardOutPath = "${config.home.homeDirectory}/Library/Logs/colima.log";
+            StandardErrorPath = "${config.home.homeDirectory}/Library/Logs/colima.err.log";
+        };
     };
 
     # Let Home Manager install and manage itself.
