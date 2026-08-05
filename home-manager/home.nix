@@ -45,6 +45,7 @@
             luaPackages.tree-sitter-cli
             gh
             kubectl
+            pgcli
         ]
         # Linux-only
         ++ lib.optionals pkgs.stdenv.isLinux [
