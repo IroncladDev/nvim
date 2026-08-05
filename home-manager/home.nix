@@ -44,8 +44,7 @@
             luaPackages.tree-sitter-cli
             gh
             rustup
-            gcc
-            pkg-config
+            clang
             openssl
         ]
         # Linux-only
@@ -62,7 +61,7 @@
             nest-cli
             cloudmonkey
             postgresql
-            wireguard-tools
+            libiconv
         ];
 
     programs.direnv = {
