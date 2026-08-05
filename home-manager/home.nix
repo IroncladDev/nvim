@@ -34,6 +34,7 @@
             zoxide
             yazi
             openssh
+            openssl
             lua
             bun
             keychain
@@ -43,9 +44,6 @@
             btop
             luaPackages.tree-sitter-cli
             gh
-            rustup
-            clang
-            openssl
         ]
         # Linux-only
         ++ lib.optionals pkgs.stdenv.isLinux [
@@ -61,7 +59,6 @@
             nest-cli
             cloudmonkey
             postgresql
-            libiconv
         ];
 
     programs.direnv = {
