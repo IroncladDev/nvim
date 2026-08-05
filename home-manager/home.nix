@@ -45,7 +45,9 @@
             gh
             kubectl
             pgcli
-            cloudflared
+            docker
+            colima
+            docker-compose
         ]
         # Linux-only
         ++ lib.optionals pkgs.stdenv.isLinux [
@@ -53,6 +55,7 @@
             wiremix
             impala
             bluetui
+            cloudflared
         ]
         # macOS-only
         ++ lib.optionals pkgs.stdenv.isDarwin [
@@ -62,64 +65,12 @@
             cloudmonkey
             postgresql
             colima
-            docker
-            docker-compose
         ];
 
     programs.direnv = {
         enable = true;
         nix-direnv.enable = true;
     };
-
-    launchd.agents.colima = {
-        enable = true;
-        domain = "user";
-        config = {
-            Label = "com.user.colima";
-            ProgramArguments = [
-                "${pkgs.colima}/bin/colima"
-                "start"
-                "--foreground"
-            ];
-            RunAtLoad = true;
-            KeepAlive = false;
-            ProcessType = "Background";
-            LimitLoadToSessionType = "Background";
-            StandardOutPath = "${config.home.homeDirectory}/Library/Logs/colima.log";
-            StandardErrorPath = "${config.home.homeDirectory}/Library/Logs/colima.err.log";
-            EnvironmentVariables = {
-                PATH = lib.makeBinPath [
-                    pkgs.colima
-                    pkgs.lima
-                    pkgs.docker
-                ] + ":/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin";
-            };
-        };
-    };
-
-    launchd.agents.cloudflared = {
-         enable = true;
-         domain = "user";
-         config = {
-             Label = "com.user.cloudflared";
-             ProgramArguments = [
-                 "/bin/bash"
-                 "-c"
-                 ''
-                     set -a
-                     source ${config.home.homeDirectory}/.config/cloudflared/.env
-                     set +a
-                     exec ${pkgs.cloudflared}/bin/cloudflared tunnel run --token "$CLOUDFLARE_TUNNEL_TOKEN"
-                 ''
-             ];
-             RunAtLoad = true;
-             KeepAlive = true;
-             ProcessType = "Background";
-             LimitLoadToSessionType = "Background";
-             StandardOutPath = "${config.home.homeDirectory}/Library/Logs/cloudflared.log";
-             StandardErrorPath = "${config.home.homeDirectory}/Library/Logs/cloudflared.err.log";
-         };
-     };
 
     programs.home-manager.enable = true;
 }
