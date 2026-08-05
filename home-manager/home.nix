@@ -45,6 +45,7 @@
             gh
             kubectl
             pgcli
+            cloudflared
         ]
         # Linux-only
         ++ lib.optionals pkgs.stdenv.isLinux [
@@ -78,14 +79,47 @@
             ProgramArguments = [
                 "${pkgs.colima}/bin/colima"
                 "start"
+                "--foreground"
             ];
             RunAtLoad = true;
             KeepAlive = false;
+            ProcessType = "Background";
+            LimitLoadToSessionType = "Background";
             StandardOutPath = "${config.home.homeDirectory}/Library/Logs/colima.log";
             StandardErrorPath = "${config.home.homeDirectory}/Library/Logs/colima.err.log";
+            EnvironmentVariables = {
+                PATH = lib.makeBinPath [
+                    pkgs.colima
+                    pkgs.lima
+                    pkgs.docker
+                ] + ":/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin";
+            };
         };
     };
 
-    # Let Home Manager install and manage itself.
+    launchd.agents.cloudflared = {
+         enable = true;
+         domain = "user";
+         config = {
+             Label = "com.user.cloudflared";
+             ProgramArguments = [
+                 "/bin/bash"
+                 "-c"
+                 ''
+                     set -a
+                     source ${config.home.homeDirectory}/.config/cloudflared/.env
+                     set +a
+                     exec ${pkgs.cloudflared}/bin/cloudflared tunnel run --token "$CLOUDFLARE_TUNNEL_TOKEN"
+                 ''
+             ];
+             RunAtLoad = true;
+             KeepAlive = true;
+             ProcessType = "Background";
+             LimitLoadToSessionType = "Background";
+             StandardOutPath = "${config.home.homeDirectory}/Library/Logs/cloudflared.log";
+             StandardErrorPath = "${config.home.homeDirectory}/Library/Logs/cloudflared.err.log";
+         };
+     };
+
     programs.home-manager.enable = true;
 }
