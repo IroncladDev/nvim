@@ -72,6 +72,7 @@
 
     launchd.agents.colima = {
         enable = true;
+        domain = "user";
         config = {
             Label = "com.user.colima";
             ProgramArguments = [
