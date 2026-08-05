@@ -40,7 +40,6 @@
             keychain
             neovim
             git
-            cloudflared
             btop
             luaPackages.tree-sitter-cli
             gh
