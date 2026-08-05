@@ -43,6 +43,10 @@
             btop
             luaPackages.tree-sitter-cli
             gh
+            rustup
+            gcc
+            pkg-config
+            openssl
         ]
         # Linux-only
         ++ lib.optionals pkgs.stdenv.isLinux [
