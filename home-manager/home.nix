@@ -44,6 +44,7 @@
             btop
             luaPackages.tree-sitter-cli
             gh
+            kubectl
         ]
         # Linux-only
         ++ lib.optionals pkgs.stdenv.isLinux [
