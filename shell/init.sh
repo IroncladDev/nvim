@@ -21,6 +21,12 @@ sync-dotfiles() {
     [ -f ~/.bashrc ] && source ~/.bashrc
     [ -f ~/.zshrc ] && source ~/.zshrc
 }
+
+# writes the clipboard to the client clipboard with the osc52 drop-in
+if [ "$(uname -s)" = "Darwin" ] && { [ -n "$SSH_CONNECTION" ] || [ -n "$SSH_CLIENT" ]; }; then
+    export PATH="$HOME/.config/shell/bin:$PATH"
+fi
+
 # Add 
 # `source ~/.config/shell/init.sh`
 # to the end of your ~/.bashrc or ~/.zshrc
