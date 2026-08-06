@@ -17,18 +17,23 @@ return {
 	---@module "conform"
 	---@type conform.setupOpts
 	opts = function()
+		-- Switch to biome if biome.json is found
+		local has_biome = vim.fn.filereadable(vim.fn.getcwd() .. "/biome.json") == 1
+		local web_formatter = has_biome and { "biome", "biome-check" }
+			or { "prettierd", "prettier", stop_after_first = true }
+
 		return {
 			formatters_by_ft = {
 				lua = { "stylua" },
 				rust = { "rustfmt", lsp_format = "fallback" },
-				javascript = { "prettierd", "prettier", stop_after_first = true },
-				typescript = { "prettierd", "prettier", stop_after_first = true },
-				javascriptreact = { "prettierd", "prettier", stop_after_first = true },
-				typescriptreact = { "prettierd", "prettier", stop_after_first = true },
-				css = { "prettierd", "prettier", stop_after_first = true },
-				svelte = { "prettierd", "prettier", stop_after_first = true },
-				astro = { "prettierd", "prettier", stop_after_first = true },
-				html = { "prettierd", "prettier", stop_after_first = true },
+				javascript = web_formatter,
+				typescript = web_formatter,
+				javascriptreact = web_formatter,
+				typescriptreact = web_formatter,
+				css = web_formatter,
+				svelte = web_formatter,
+				astro = web_formatter,
+				html = web_formatter,
 				nix = { "nixfmt" },
 			},
 			formatters = {

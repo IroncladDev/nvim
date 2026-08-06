@@ -3,12 +3,6 @@ return {
     dependencies = {
         "mason-org/mason-lspconfig.nvim",
     },
-    ensure_installed = {
-        "stylua",
-        "prettier",
-        "prettierd",
-        "nixfmt",
-    },
     config = function()
         local mason = require("mason")
         local mason_lspconfig = require("mason-lspconfig")
@@ -17,14 +11,10 @@ return {
 
         mason_lspconfig.setup({
             ensure_installed = {
-                -- "astro",
                 "html",
                 "cssls",
                 "ts_ls",
                 "lua_ls",
-                -- "rust_analyzer",
-                -- "svelte",
-                -- "golangci_lint_ls",
             },
             automatic_installation = true,
         })
