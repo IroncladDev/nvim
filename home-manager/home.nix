@@ -12,6 +12,7 @@
     home = {
         username = "ironcladdev";
         homeDirectory = "/${if pkgs.stdenv.isLinux then "home" else "Users"}/${config.home.username}";
+        enableNixpkgsReleaseCheck = false;
     };
 
     # This value determines the Home Manager release that your configuration is
@@ -48,6 +49,7 @@
             docker
             docker-compose
             mprocs
+            opencode
         ]
         # Linux-only
         ++ lib.optionals pkgs.stdenv.isLinux [
