@@ -50,6 +50,7 @@
             docker-compose
             mprocs
             opencode
+            zoxide
         ]
         # Linux-only
         ++ lib.optionals pkgs.stdenv.isLinux [

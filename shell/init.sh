@@ -11,6 +11,9 @@ eval $(keychain --eval --quiet id_ed25519)
 # direnv
 eval "$(direnv hook bash)"
 
+# zoxide
+eval "$(zoxide init --cmd cd zsh)"
+
 sync-dotfiles() {
     echo "--> Syncing dotfiles"
     cd ~/.config
