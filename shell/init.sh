@@ -12,7 +12,11 @@ eval $(keychain --eval --quiet id_ed25519)
 eval "$(direnv hook bash)"
 
 # zoxide
-eval "$(zoxide init --cmd cd zsh)"
+if [ "$(uname -s)" = "Darwin" ]; then
+    eval "$(zoxide init --cmd cd zsh)"
+else
+    eval "$(zoxide init --cmd cd bash)"
+fi
 
 sync-dotfiles() {
     echo "--> Syncing dotfiles"
