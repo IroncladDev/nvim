@@ -43,9 +43,6 @@
             git
             btop
             luaPackages.tree-sitter-cli
-            gh
-            kubectl
-            pgcli
             docker
             docker-compose
             mprocs
@@ -59,6 +56,7 @@
             impala
             bluetui
             cloudflared
+            signal-desktop
         ]
         # macOS-only
         ++ lib.optionals pkgs.stdenv.isDarwin [

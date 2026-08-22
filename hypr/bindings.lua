@@ -10,6 +10,8 @@ local function send_shortcut_once(mods, key)
 	end
 end
 
+-- exec swayosd-client --monitor "$(omarchy-hyprland-monitor-focused)" "$@"
+
 hl.bind("SUPER + C", send_shortcut_once("CTRL", "Insert"))
 hl.bind("SUPER + V", send_shortcut_once("SHIFT", "Insert"))
 hl.bind("SUPER + X", send_shortcut_once("CTRL", "X"))
