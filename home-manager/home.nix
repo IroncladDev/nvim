@@ -34,7 +34,6 @@
             fastfetch
             zoxide
             yazi
-            openssh
             openssl
             lua
             bun
@@ -57,6 +56,8 @@
             bluetui
             cloudflared
             signal-desktop
+            spotify
+            nodejs_26
         ]
         # macOS-only
         ++ lib.optionals pkgs.stdenv.isDarwin [
@@ -64,12 +65,22 @@
             natscli
             nest-cli
             cloudmonkey
+            openssh
             postgresql
         ];
 
     programs.direnv = {
         enable = true;
         nix-direnv.enable = true;
+    };
+
+    systemd.user.services.kanata = {
+        Unit.Description = "Kanata keyboard remapper";
+        Service = {
+            ExecStart = "${pkgs.kanata}/bin/kanata --cfg %h/.config/kanata/kanata.kbd --no-wait";
+            Restart = "on-failure";
+        };
+        Install.WantedBy = [ "default.target" ];
     };
 
     programs.home-manager.enable = true;
