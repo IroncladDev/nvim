@@ -1,3 +1,7 @@
+hl.env("HYPRCURSOR_THEME", "rose-pine-hyprcursor")
+hl.env("HYPRCURSOR_SIZE", "24")
+hl.env("XCURSOR_SIZE", "24")
+
 -- Screensaver fullscreen window rule
 hl.window_rule({
 	match = {
@@ -27,6 +31,9 @@ hl.config({
 			size = 4,
 		},
 	},
+	cursor = {
+		enable_hyprcursor = true,
+	},
 	input = {
 		kb_layout = "us",
 		kb_options = "compose:caps",
@@ -40,6 +47,7 @@ hl.config({
 		},
 	},
 })
+
 
 require("monitors")
 require("workspaces")

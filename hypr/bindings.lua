@@ -10,104 +10,93 @@ local function send_shortcut_once(mods, key)
 	end
 end
 
--- exec swayosd-client --monitor "$(omarchy-hyprland-monitor-focused)" "$@"
-
 hl.bind("SUPER + C", send_shortcut_once("CTRL", "Insert"))
 hl.bind("SUPER + V", send_shortcut_once("SHIFT", "Insert"))
 hl.bind("SUPER + X", send_shortcut_once("CTRL", "X"))
 hl.bind("SUPER + CTRL + V", hl.dsp.exec_cmd("omarchy-clipboard-manager"))
 
--- Media
--- Volume, brightness, keyboard backlight, and touchpad controls.
+-- Volume (wpctl / PipeWire)
 hl.bind(
 	"XF86AudioRaiseVolume",
-	hl.dsp.exec_cmd("omarchy-swayosd-client --output-volume raise"),
+	hl.dsp.exec_cmd("wpctl set-volume -l 1.5 @DEFAULT_AUDIO_SINK@ 5%+"),
 	{ locked = true, repeating = true }
 )
 hl.bind(
 	"XF86AudioLowerVolume",
-	hl.dsp.exec_cmd("omarchy-swayosd-client --output-volume lower"),
+	hl.dsp.exec_cmd("wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"),
 	{ locked = true, repeating = true }
 )
 hl.bind(
 	"XF86AudioMute",
-	hl.dsp.exec_cmd("omarchy-swayosd-client --output-volume mute-toggle"),
-	{ locked = true, repeating = true }
-)
-hl.bind("XF86AudioMicMute", hl.dsp.exec_cmd("omarchy-audio-input-mute"), { locked = true, repeating = true })
-hl.bind("XF86MonBrightnessUp", hl.dsp.exec_cmd("omarchy-brightness-display +5%"), { locked = true, repeating = true })
-hl.bind("XF86MonBrightnessDown", hl.dsp.exec_cmd("omarchy-brightness-display 5%-"), { locked = true, repeating = true })
-hl.bind(
-	"SHIFT + XF86MonBrightnessUp",
-	hl.dsp.exec_cmd("omarchy-brightness-display 100%"),
+	hl.dsp.exec_cmd("wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"),
 	{ locked = true, repeating = true }
 )
 hl.bind(
-	"SHIFT + XF86MonBrightnessDown",
-	hl.dsp.exec_cmd("omarchy-brightness-display 1%"),
+	"XF86AudioMicMute",
+	hl.dsp.exec_cmd("wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"),
 	{ locked = true, repeating = true }
 )
-hl.bind("XF86KbdBrightnessUp", hl.dsp.exec_cmd("omarchy-brightness-keyboard up"), { locked = true, repeating = true })
-hl.bind(
-	"XF86KbdBrightnessDown",
-	hl.dsp.exec_cmd("omarchy-brightness-keyboard down"),
-	{ locked = true, repeating = true }
-)
-hl.bind("XF86KbdLightOnOff", hl.dsp.exec_cmd("omarchy-brightness-keyboard cycle"), { locked = true })
-hl.bind("XF86TouchpadToggle", hl.dsp.exec_cmd("omarchy-toggle-touchpad"), { locked = true })
-hl.bind("XF86TouchpadOn", hl.dsp.exec_cmd("omarchy-toggle-touchpad on"), { locked = true })
-hl.bind("XF86TouchpadOff", hl.dsp.exec_cmd("omarchy-toggle-touchpad off"), { locked = true })
-
--- Precise volume and brightness controls.
 hl.bind(
 	"ALT + XF86AudioRaiseVolume",
-	hl.dsp.exec_cmd("omarchy-swayosd-client --output-volume +1"),
+	hl.dsp.exec_cmd("wpctl set-volume -l 1.5 @DEFAULT_AUDIO_SINK@ 1%+"),
 	{ locked = true, repeating = true }
 )
 hl.bind(
 	"ALT + XF86AudioLowerVolume",
-	hl.dsp.exec_cmd("omarchy-swayosd-client --output-volume -1"),
+	hl.dsp.exec_cmd("wpctl set-volume @DEFAULT_AUDIO_SINK@ 1%-"),
 	{ locked = true, repeating = true }
 )
+hl.bind("SUPER + XF86AudioMute", hl.dsp.exec_cmd("uwsm-app -- wiremix"), { locked = true })
+
+-- Brightness (brightnessctl)
+hl.bind("XF86MonBrightnessUp", hl.dsp.exec_cmd("brightnessctl set 5%+"), { locked = true, repeating = true })
+hl.bind("XF86MonBrightnessDown", hl.dsp.exec_cmd("brightnessctl set 5%-"), { locked = true, repeating = true })
+hl.bind("SHIFT + XF86MonBrightnessUp", hl.dsp.exec_cmd("brightnessctl set 100%"), { locked = true })
+hl.bind("SHIFT + XF86MonBrightnessDown", hl.dsp.exec_cmd("brightnessctl set 1%"), { locked = true })
+hl.bind("ALT + XF86MonBrightnessUp", hl.dsp.exec_cmd("brightnessctl set 1%+"), { locked = true, repeating = true })
+hl.bind("ALT + XF86MonBrightnessDown", hl.dsp.exec_cmd("brightnessctl set 1%-"), { locked = true, repeating = true })
+hl.bind("XF86KbdBrightnessUp", hl.dsp.exec_cmd("brightnessctl -d '*kbd*' set 5%+"), { locked = true, repeating = true })
 hl.bind(
-	"ALT + XF86MonBrightnessUp",
-	hl.dsp.exec_cmd("omarchy-brightness-display +1%"),
+	"XF86KbdBrightnessDown",
+	hl.dsp.exec_cmd("brightnessctl -d '*kbd*' set 5%-"),
 	{ locked = true, repeating = true }
 )
-hl.bind(
-	"ALT + XF86MonBrightnessDown",
-	hl.dsp.exec_cmd("omarchy-brightness-display 1%-"),
-	{ locked = true, repeating = true }
-)
+hl.bind("XF86KbdLightOnOff", hl.dsp.exec_cmd("brightnessctl -d '*kbd*' set 0"), { locked = true })
 
--- Media controls.
-hl.bind("XF86AudioNext", hl.dsp.exec_cmd("omarchy-swayosd-client --playerctl next"), { locked = true })
-hl.bind("XF86AudioPause", hl.dsp.exec_cmd("omarchy-swayosd-client --playerctl play-pause"), { locked = true })
-hl.bind("XF86AudioPlay", hl.dsp.exec_cmd("omarchy-swayosd-client --playerctl play-pause"), { locked = true })
-hl.bind("XF86AudioPrev", hl.dsp.exec_cmd("omarchy-swayosd-client --playerctl previous"), { locked = true })
-
-hl.bind("SUPER + XF86AudioMute", hl.dsp.exec_cmd("omarchy-audio-output-switch"), { locked = true })
-
--- Menu
-hl.bind("SUPER + SPACE", hl.dsp.exec_cmd("walker"))
-hl.bind("SUPER + ALT + SPACE", hl.dsp.exec_cmd("omarchy-menu"))
+-- Media (playerctl / MPRIS)
+hl.bind("XF86AudioNext", hl.dsp.exec_cmd("playerctl next"), { locked = true })
+hl.bind("XF86AudioPause", hl.dsp.exec_cmd("playerctl play-pause"), { locked = true })
+hl.bind("XF86AudioPlay", hl.dsp.exec_cmd("playerctl play-pause"), { locked = true })
+hl.bind("XF86AudioPrev", hl.dsp.exec_cmd("playerctl previous"), { locked = true })
 
 -- Apps
-hl.bind("SUPER + T", hl.dsp.exec_cmd("kitty"))
+hl.bind("SUPER + T", hl.dsp.exec_cmd("uwsm-app -- kitty"))
 
--- Screenshots
-hl.bind("PRINT", hl.dsp.exec_cmd("omarchy-capture-screenshot smart copy"))
-hl.bind("CTRL + PRINT", hl.dsp.exec_cmd("omarchy-capture-screenshot"))
-hl.bind("SHIFT + PRINT", hl.dsp.exec_cmd("omarchy-capture-screenshot windows"))
+-- Screenshots (grimblast)
+hl.bind("PRINT", hl.dsp.exec_cmd("grimblast --notify --freeze copy area"))
+hl.bind("CTRL + PRINT", hl.dsp.exec_cmd("grimblast --notify --freeze save area"))
+hl.bind("SHIFT + PRINT", hl.dsp.exec_cmd("grimblast --notify copy active"))
+hl.bind("SUPER + PRINT", hl.dsp.exec_cmd("grimblast --notify copy output"))
+hl.bind("SUPER + SHIFT + PRINT", hl.dsp.exec_cmd("grimblast --notify save screen"))
 
--- Screen recordings
-hl.bind("ALT + PRINT", hl.dsp.exec_cmd("omarchy-capture-screenrecording"))
+-- Screen recordings (wl-screenrec)
+hl.bind(
+	"ALT + PRINT",
+	hl.dsp.exec_cmd(
+		[[bash -lc 'mkdir -p "$HOME/Videos" && geo=$(slurp) && notify-send -a wl-screenrec "Recording" "started" && wl-screenrec -g "$geo" -f "$HOME/Videos/screenrecord-$(date +%Y%m%d-%H%M%S).mp4"']]
+	)
+)
 hl.bind(
 	"ALT + SHIFT + PRINT",
-	hl.dsp.exec_cmd([[omarchy-capture-screenrecording
-      --with-microphone-audio 
-      --with-desktop-audio
-    ]])
+	hl.dsp.exec_cmd(
+		[[bash -lc 'mkdir -p "$HOME/Videos" && geo=$(slurp) && notify-send -a wl-screenrec "Recording" "started (audio)" && wl-screenrec --audio -g "$geo" -f "$HOME/Videos/screenrecord-$(date +%Y%m%d-%H%M%S).mp4"']]
+	)
+)
+hl.bind(
+	"SUPER + ALT + PRINT",
+	hl.dsp.exec_cmd(
+		[[bash -lc 'pkill -INT wl-screenrec && notify-send -a wl-screenrec "Recording" "stopped" || notify-send -a wl-screenrec "Recording" "none active"']]
+	)
 )
 
 -- Resizing

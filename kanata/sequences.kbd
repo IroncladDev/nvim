@@ -10,6 +10,7 @@
   screenshot-window (s w)
   record-region (r r)
   record-region-audio (r a)
+  record-stop (r s)
 
   apps (f f)
   menu (f p)
@@ -25,6 +26,7 @@
   screenshot-window (macro S-prnt)
   record-region (macro A-prnt)
   record-region-audio (macro A-S-prnt)
+  record-stop (macro M-A-prnt)
 
   apps (macro M-spc)
   menu (macro M-A-spc)

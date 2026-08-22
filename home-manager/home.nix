@@ -13,6 +13,7 @@
         username = "ironcladdev";
         homeDirectory = "/${if pkgs.stdenv.isLinux then "home" else "Users"}/${config.home.username}";
         enableNixpkgsReleaseCheck = false;
+        sessionPath = [ "$HOME/.config/shell/bin" ];
     };
 
     # This value determines the Home Manager release that your configuration is
@@ -47,6 +48,7 @@
             mprocs
             opencode
             zoxide
+            unzip
         ]
         # Linux-only
         ++ lib.optionals pkgs.stdenv.isLinux [
@@ -58,6 +60,19 @@
             signal-desktop
             spotify
             nodejs_26
+            dunst
+            libnotify
+            playerctl
+            brightnessctl
+            nerd-fonts.jetbrains-mono
+            stylua
+            lua-language-server
+            grimblast
+            wl-screenrec
+            slurp
+            mpv
+            rose-pine-hyprcursor
+            awww
         ]
         # macOS-only
         ++ lib.optionals pkgs.stdenv.isDarwin [
@@ -68,6 +83,16 @@
             openssh
             postgresql
         ];
+
+    fonts.fontconfig = {
+        enable = true;
+        defaultFonts = {
+            monospace = [
+                "JetBrainsMono Nerd Font Mono"
+                "JetBrainsMono NFM"
+            ];
+        };
+    };
 
     programs.direnv = {
         enable = true;
@@ -81,6 +106,24 @@
             Restart = "on-failure";
         };
         Install.WantedBy = [ "default.target" ];
+    };
+
+    # dunst package above; config is ~/.config/dunst/dunstrc (not HM-managed).
+    # services.dunst is avoided because it always writes dunstrc (icon_path).
+    systemd.user.services.dunst = lib.mkIf pkgs.stdenv.isLinux {
+        Unit = {
+            Description = "Dunst notification daemon";
+            After = [ "graphical-session.target" ];
+            PartOf = [ "graphical-session.target" ];
+        };
+        Service = {
+            Type = "dbus";
+            BusName = "org.freedesktop.Notifications";
+            ExecStart = "${pkgs.dunst}/bin/dunst";
+            ExecReload = "${pkgs.dunst}/bin/dunstctl reload";
+            Restart = "on-failure";
+        };
+        Install.WantedBy = [ "graphical-session.target" ];
     };
 
     programs.home-manager.enable = true;
