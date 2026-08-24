@@ -58,7 +58,6 @@
             bluetui
             cloudflared
             signal-desktop
-            spotify
             nodejs_26
             dunst
             libnotify
@@ -73,6 +72,9 @@
             mpv
             rose-pine-hyprcursor
             awww
+            eslint
+            eslint_d
+            fff
         ]
         # macOS-only
         ++ lib.optionals pkgs.stdenv.isDarwin [

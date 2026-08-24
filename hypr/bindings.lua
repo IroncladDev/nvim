@@ -71,6 +71,7 @@ hl.bind("XF86AudioPrev", hl.dsp.exec_cmd("playerctl previous"), { locked = true 
 
 -- Apps
 hl.bind("SUPER + T", hl.dsp.exec_cmd("uwsm-app -- kitty"))
+hl.bind("SUPER + S", hl.dsp.exec_cmd("uwsm-app -- brave"))
 
 -- Screenshots (grimblast)
 hl.bind("PRINT", hl.dsp.exec_cmd("grimblast --notify --freeze copy area"))
