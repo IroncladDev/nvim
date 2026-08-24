@@ -128,5 +128,8 @@
         Install.WantedBy = [ "graphical-session.target" ];
     };
 
+    services.hypridle.enable = true;
+    programs.hyprlock.enable = true;
+
     programs.home-manager.enable = true;
 }

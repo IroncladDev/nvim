@@ -16,52 +16,35 @@ hl.bind("SUPER + X", send_shortcut_once("CTRL", "X"))
 hl.bind("SUPER + CTRL + V", hl.dsp.exec_cmd("omarchy-clipboard-manager"))
 
 -- Volume (wpctl / PipeWire)
-hl.bind(
-	"XF86AudioRaiseVolume",
-	hl.dsp.exec_cmd("wpctl set-volume -l 1.5 @DEFAULT_AUDIO_SINK@ 5%+"),
-	{ locked = true, repeating = true }
-)
-hl.bind(
-	"XF86AudioLowerVolume",
-	hl.dsp.exec_cmd("wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"),
-	{ locked = true, repeating = true }
-)
+hl.bind("XF86AudioRaiseVolume", hl.dsp.exec_cmd("~/.config/shell/volume up"), { locked = true, repeating = true })
+hl.bind("XF86AudioLowerVolume", hl.dsp.exec_cmd("~/.config/shell/volume down"), { locked = true, repeating = true })
 hl.bind(
 	"XF86AudioMute",
-	hl.dsp.exec_cmd("wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"),
+	hl.dsp.exec_cmd("wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle && notify-send -a wpctl 'Volume' 'toggle mute'"),
 	{ locked = true, repeating = true }
 )
-hl.bind(
-	"XF86AudioMicMute",
-	hl.dsp.exec_cmd("wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"),
-	{ locked = true, repeating = true }
-)
-hl.bind(
-	"ALT + XF86AudioRaiseVolume",
-	hl.dsp.exec_cmd("wpctl set-volume -l 1.5 @DEFAULT_AUDIO_SINK@ 1%+"),
-	{ locked = true, repeating = true }
-)
-hl.bind(
-	"ALT + XF86AudioLowerVolume",
-	hl.dsp.exec_cmd("wpctl set-volume @DEFAULT_AUDIO_SINK@ 1%-"),
-	{ locked = true, repeating = true }
-)
-hl.bind("SUPER + XF86AudioMute", hl.dsp.exec_cmd("uwsm-app -- wiremix"), { locked = true })
 
 -- Brightness (brightnessctl)
-hl.bind("XF86MonBrightnessUp", hl.dsp.exec_cmd("brightnessctl set 5%+"), { locked = true, repeating = true })
-hl.bind("XF86MonBrightnessDown", hl.dsp.exec_cmd("brightnessctl set 5%-"), { locked = true, repeating = true })
-hl.bind("SHIFT + XF86MonBrightnessUp", hl.dsp.exec_cmd("brightnessctl set 100%"), { locked = true })
-hl.bind("SHIFT + XF86MonBrightnessDown", hl.dsp.exec_cmd("brightnessctl set 1%"), { locked = true })
-hl.bind("ALT + XF86MonBrightnessUp", hl.dsp.exec_cmd("brightnessctl set 1%+"), { locked = true, repeating = true })
-hl.bind("ALT + XF86MonBrightnessDown", hl.dsp.exec_cmd("brightnessctl set 1%-"), { locked = true, repeating = true })
-hl.bind("XF86KbdBrightnessUp", hl.dsp.exec_cmd("brightnessctl -d '*kbd*' set 5%+"), { locked = true, repeating = true })
 hl.bind(
-	"XF86KbdBrightnessDown",
-	hl.dsp.exec_cmd("brightnessctl -d '*kbd*' set 5%-"),
+	"XF86MonBrightnessUp",
+	hl.dsp.exec_cmd("~/.config/shell/brightness up"),
 	{ locked = true, repeating = true }
 )
-hl.bind("XF86KbdLightOnOff", hl.dsp.exec_cmd("brightnessctl -d '*kbd*' set 0"), { locked = true })
+hl.bind(
+	"XF86MonBrightnessDown",
+	hl.dsp.exec_cmd("~/.config/shell/brightness down"),
+	{ locked = true, repeating = true }
+)
+hl.bind(
+	"XF86KbdBrightnessUp",
+	hl.dsp.exec_cmd("~/.config/shell/brightness up"),
+	{ locked = true, repeating = true }
+)
+hl.bind(
+	"XF86KbdBrightnessDown",
+	hl.dsp.exec_cmd("~/.config/shell/brightness down"),
+	{ locked = true, repeating = true }
+)
 
 -- Media (playerctl / MPRIS)
 hl.bind("XF86AudioNext", hl.dsp.exec_cmd("playerctl next"), { locked = true })
