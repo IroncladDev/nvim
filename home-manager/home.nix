@@ -95,7 +95,7 @@
         };
     };
 
-    programs.direnv = lib.mkIf pkgs.stdenv.isLinux {
+    programs.direnv = {
         enable = true;
         nix-direnv.enable = true;
     };
