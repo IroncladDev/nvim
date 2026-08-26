@@ -46,7 +46,6 @@
             lua
             stylua
             lua-language-server
-            fff
             typescript-language-server
             vscode-langservers-extracted
             lsof
