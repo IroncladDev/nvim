@@ -29,6 +29,24 @@ sync-dotfiles() {
     [ -f ~/.zshrc ] && source ~/.zshrc
 }
 
+killport() {
+  if [ -z "$1" ]; then
+    echo "Usage: killport <port>"
+    return 1
+  fi
+
+  local pids
+  pids=$(lsof -t -i:"$1" 2>/dev/null)
+
+  if [ -z "$pids" ]; then
+    echo "No process found on port $1"
+    return 1
+  fi
+
+  echo "Killing process(es) on port $1 → $pids"
+  kill -9 $pids
+}
+
 # writes the clipboard to the client clipboard with the osc52 drop-in
 if [ "$(uname -s)" = "Darwin" ] && { [ -n "$SSH_CONNECTION" ] || [ -n "$SSH_CLIENT" ]; }; then
     export PATH="$HOME/.config/shell/bin:$PATH"

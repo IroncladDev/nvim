@@ -32,23 +32,24 @@
             ripgrep
             magic-wormhole
             jujutsu
-            fastfetch
             zoxide
             yazi
             openssl
-            lua
-            bun
             keychain
-            neovim
             git
             btop
-            luaPackages.tree-sitter-cli
-            docker
-            docker-compose
-            mprocs
             opencode
             zoxide
             unzip
+            neovim
+            luaPackages.tree-sitter-cli
+            lua
+            stylua
+            lua-language-server
+            fff
+            typescript-language-server
+            vscode-langservers-extracted
+            lsof
         ]
         # Linux-only
         ++ lib.optionals pkgs.stdenv.isLinux [
@@ -64,20 +65,19 @@
             playerctl
             brightnessctl
             nerd-fonts.jetbrains-mono
-            stylua
-            lua-language-server
             grimblast
             wl-screenrec
             slurp
             mpv
             rose-pine-hyprcursor
             awww
-            eslint
-            eslint_d
-            fff
+            nixfmt
         ]
         # macOS-only
         ++ lib.optionals pkgs.stdenv.isDarwin [
+            docker
+            docker-compose
+            mprocs
             glab
             natscli
             nest-cli
@@ -86,7 +86,7 @@
             postgresql
         ];
 
-    fonts.fontconfig = {
+    fonts.fontconfig = lib.mkIf pkgs.stdenv.isLinux {
         enable = true;
         defaultFonts = {
             monospace = [
@@ -96,12 +96,12 @@
         };
     };
 
-    programs.direnv = {
+    programs.direnv = lib.mkIf pkgs.stdenv.isLinux {
         enable = true;
         nix-direnv.enable = true;
     };
 
-    systemd.user.services.kanata = {
+    systemd.user.services.kanata = lib.mkIf pkgs.stdenv.isLinux {
         Unit.Description = "Kanata keyboard remapper";
         Service = {
             ExecStart = "${pkgs.kanata}/bin/kanata --cfg %h/.config/kanata/kanata.kbd --no-wait";
@@ -110,8 +110,6 @@
         Install.WantedBy = [ "default.target" ];
     };
 
-    # dunst package above; config is ~/.config/dunst/dunstrc (not HM-managed).
-    # services.dunst is avoided because it always writes dunstrc (icon_path).
     systemd.user.services.dunst = lib.mkIf pkgs.stdenv.isLinux {
         Unit = {
             Description = "Dunst notification daemon";
@@ -128,8 +126,8 @@
         Install.WantedBy = [ "graphical-session.target" ];
     };
 
-    services.hypridle.enable = true;
-    programs.hyprlock.enable = true;
+    services.hypridle.enable = lib.mkIf pkgs.stdenv.isLinux true;
+    programs.hyprlock.enable = lib.mkIf pkgs.stdenv.isLinux true;
 
     programs.home-manager.enable = true;
 }
