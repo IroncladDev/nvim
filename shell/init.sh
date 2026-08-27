@@ -16,6 +16,8 @@ if [ "$(uname -s)" = "Darwin" ]; then
     eval "$(zoxide init --cmd cd zsh)"
 else
     eval "$(zoxide init --cmd cd bash)"
+    bind '"\e[A": history-search-backward'
+    bind '"\e[B": history-search-forward'
 fi
 
 sync-dotfiles() {
