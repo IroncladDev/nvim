@@ -13,7 +13,6 @@
         username = "ironcladdev";
         homeDirectory = "/${if pkgs.stdenv.isLinux then "home" else "Users"}/${config.home.username}";
         enableNixpkgsReleaseCheck = false;
-        sessionPath = [ "$HOME/.config/shell/bin" ];
     };
 
     # This value determines the Home Manager release that your configuration is
@@ -122,11 +121,6 @@
                 kill -9 $pids
             '';
         };
-        interactiveShellInit = lib.optionalString pkgs.stdenv.isDarwin ''
-            if set -q SSH_CONNECTION; or set -q SSH_CLIENT
-              fish_add_path $HOME/.config/shell/bin
-            end
-        '';
     };
 
     programs.zoxide = {
@@ -179,7 +173,7 @@
         };
         Service = {
             Type = "oneshot";
-            ExecStart = "%h/.config/shell/battery";
+            ExecStart = "%h/.config/scripts/battery";
         };
     };
 
