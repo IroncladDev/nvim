@@ -13,6 +13,10 @@
         username = "ironcladdev";
         homeDirectory = "/${if pkgs.stdenv.isLinux then "home" else "Users"}/${config.home.username}";
         enableNixpkgsReleaseCheck = false;
+        sessionVariables = {
+            EDITOR = "nvim";
+            VISUAL = "nvim";
+        };
     };
 
     # This value determines the Home Manager release that your configuration is
@@ -45,7 +49,6 @@
             typescript-language-server
             vscode-langservers-extracted
             lsof
-            fish
         ]
         # Linux-only
         ++ lib.optionals pkgs.stdenv.isLinux [
@@ -97,6 +100,10 @@
         shellAliases = {
             y = "yazi";
         };
+        shellInit = ''
+            set -gx EDITOR nvim
+            set -gx VISUAL nvim
+        '';
         functions = {
             sync-dotfiles = ''
                 echo "--> Syncing dotfiles"
