@@ -32,14 +32,11 @@
             ripgrep
             magic-wormhole
             jujutsu
-            zoxide
             yazi
             openssl
-            keychain
             git
             btop
             opencode
-            zoxide
             unzip
             neovim
             luaPackages.tree-sitter-cli
@@ -49,6 +46,7 @@
             typescript-language-server
             vscode-langservers-extracted
             lsof
+            fish
         ]
         # Linux-only
         ++ lib.optionals pkgs.stdenv.isLinux [
@@ -95,6 +93,54 @@
         };
     };
 
+    programs.fish = {
+        enable = true;
+        shellAliases = {
+            y = "yazi";
+        };
+        functions = {
+            sync-dotfiles = ''
+                echo "--> Syncing dotfiles"
+                cd ~/.config
+                jj f
+                jj new master
+                home-manager switch
+                echo "--> Reloading shell"
+                exec fish
+            '';
+            killport = ''
+                if test -z "$argv[1]"
+                  echo "Usage: killport <port>"
+                  return 1
+                end
+                set -l pids (lsof -t -i:"$argv[1]" 2>/dev/null)
+                if test -z "$pids"
+                  echo "No process found on port $argv[1]"
+                  return 1
+                end
+                echo "Killing process(es) on port $argv[1] → $pids"
+                kill -9 $pids
+            '';
+        };
+        interactiveShellInit = lib.optionalString pkgs.stdenv.isDarwin ''
+            if set -q SSH_CONNECTION; or set -q SSH_CLIENT
+              fish_add_path $HOME/.config/shell/bin
+            end
+        '';
+    };
+
+    programs.zoxide = {
+        enable = true;
+        options = [
+            "--cmd"
+            "cd"
+        ];
+    };
+    programs.keychain = {
+        enable = true;
+        keys = [ "id_ed25519" ];
+        extraFlags = [ "--quiet" ];
+    };
     programs.direnv = {
         enable = true;
         nix-direnv.enable = true;
@@ -123,6 +169,29 @@
             Restart = "on-failure";
         };
         Install.WantedBy = [ "graphical-session.target" ];
+    };
+
+    systemd.user.services.battery-notify = lib.mkIf pkgs.stdenv.isLinux {
+        Unit = {
+            Description = "Notify current battery percentage";
+            After = [ "graphical-session.target" ];
+            PartOf = [ "graphical-session.target" ];
+        };
+        Service = {
+            Type = "oneshot";
+            ExecStart = "%h/.config/shell/battery";
+        };
+    };
+
+    systemd.user.timers.battery-notify = lib.mkIf pkgs.stdenv.isLinux {
+        Unit.Description = "Battery percentage notification every 10 minutes";
+        Timer = {
+            OnBootSec = "1min";
+            OnUnitActiveSec = "10min";
+            Persistent = true;
+            Unit = "battery-notify.service";
+        };
+        Install.WantedBy = [ "timers.target" ];
     };
 
     services.hypridle.enable = lib.mkIf pkgs.stdenv.isLinux true;

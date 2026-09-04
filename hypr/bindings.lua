@@ -16,8 +16,8 @@ hl.bind("SUPER + X", send_shortcut_once("CTRL", "X"))
 hl.bind("SUPER + CTRL + V", hl.dsp.exec_cmd("omarchy-clipboard-manager"))
 
 -- Volume (wpctl / PipeWire)
-hl.bind("XF86AudioRaiseVolume", hl.dsp.exec_cmd("~/.config/shell/volume up"), { locked = true, repeating = true })
-hl.bind("XF86AudioLowerVolume", hl.dsp.exec_cmd("~/.config/shell/volume down"), { locked = true, repeating = true })
+hl.bind("XF86AudioRaiseVolume", hl.dsp.exec_cmd("~/.config/scripts/volume up"), { locked = true, repeating = true })
+hl.bind("XF86AudioLowerVolume", hl.dsp.exec_cmd("~/.config/scripts/volume down"), { locked = true, repeating = true })
 hl.bind(
 	"XF86AudioMute",
 	hl.dsp.exec_cmd("wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle && notify-send -a wpctl 'Volume' 'toggle mute'"),
@@ -27,22 +27,22 @@ hl.bind(
 -- Brightness (brightnessctl)
 hl.bind(
 	"XF86MonBrightnessUp",
-	hl.dsp.exec_cmd("~/.config/shell/brightness up"),
+	hl.dsp.exec_cmd("~/.config/scripts/brightness up"),
 	{ locked = true, repeating = true }
 )
 hl.bind(
 	"XF86MonBrightnessDown",
-	hl.dsp.exec_cmd("~/.config/shell/brightness down"),
+	hl.dsp.exec_cmd("~/.config/scripts/brightness down"),
 	{ locked = true, repeating = true }
 )
 hl.bind(
 	"XF86KbdBrightnessUp",
-	hl.dsp.exec_cmd("~/.config/shell/brightness up"),
+	hl.dsp.exec_cmd("~/.config/scripts/brightness up"),
 	{ locked = true, repeating = true }
 )
 hl.bind(
 	"XF86KbdBrightnessDown",
-	hl.dsp.exec_cmd("~/.config/shell/brightness down"),
+	hl.dsp.exec_cmd("~/.config/scripts/brightness down"),
 	{ locked = true, repeating = true }
 )
 

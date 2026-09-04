@@ -1,6 +1,0 @@
-#!/bin/zsh
-# OSC 52 pbcopy drop-in for remote sessions (works with Kitty, etc.)
-data=$(cat)
-# strip trailing newline that many tools add, then base64
-b64=$(printf '%s' "$data" | base64 | tr -d '\n')
-printf '\e]52;c;%s\a' "$b64"
