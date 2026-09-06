@@ -103,6 +103,7 @@
         shellInit = ''
             set -gx EDITOR nvim
             set -gx VISUAL nvim
+            set --universal nvm_default_version 22
         '';
         functions = {
             sync-dotfiles = ''
